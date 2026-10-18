@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1640'/%3E%3Ctext x='32' y='44' font-family='Impact,sans-serif' font-size='28' font-style='italic' text-anchor='middle' fill='%23ffd23f'%3EPP%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Power Papiers"><meta property="og:description" content="Bail et quittance en quelques minutes, guides clairs pour toutes les grandes démarches.">
+<title>Power Papiers</title>
+<meta name="description" content="Power Papiers : bail d'habitation et quittance de loyer générés en quelques minutes, et guides clairs pour le mariage, le divorce, la succession, la création d'entreprise et la vente d'un logement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Mise en page : une couverture de manga survoltée (rayons d'énergie, trame), puis des « chapitres » outils et guides en planches à bordure épaisse. */
+:root{
+  --night:#0d1640;          /* fond profond des bandeaux */
+  --paper:#fff8ec;          /* papier manga */
+  --ink:#141a33;            /* encre */
+  --muted:#5a6182;
+  --energy:#ff7a1a;         /* aura orange */
+  --volt:#ffd23f;           /* éclair jaune */
+  --sky:#2f6bff;            /* bleu énergie */
+  --line:#141a33;
+  --surface:#ffffff;
+  --doc:#fffdf7;
+  --ok:#1f9d5c;--warn:#d9480f;
+  --dot:rgba(20,26,51,.09);
+  --f-display:'Bangers',Impact,'Arial Black',sans-serif;
+  --f-body:'Barlow',system-ui,sans-serif;
+  --f-cond:'Barlow Condensed','Arial Narrow',sans-serif;
+  --f-doc:'Courier Prime','Courier New',monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b1030;--ink:#eef1ff;--muted:#a3abcf;--line:#e3e8ff;--surface:#141c4a;--doc:#fbf8f0;--dot:rgba(200,210,255,.08);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0b1030;--ink:#eef1ff;--muted:#a3abcf;--line:#e3e8ff;--surface:#141c4a;--doc:#fbf8f0;--dot:rgba(200,210,255,.08);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:17px/1.6 var(--f-body);background-image:radial-gradient(var(--dot) 1.3px,transparent 1.5px);background-size:9px 9px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance}
+a{color:var(--sky)}
+:focus-visible{outline:3px solid var(--volt);outline-offset:3px}
+
+/* En-tête */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--night);border-bottom:4px solid var(--volt)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.logo{font:400 1.9rem/1 var(--f-display);letter-spacing:.04em;color:#fff;text-decoration:none;transform:skew(-8deg);display:inline-block;text-shadow:3px 3px 0 #000}
+.logo span{color:var(--volt);-webkit-text-stroke:1px #000}
+nav.menu{display:flex;gap:5px;flex-wrap:nowrap;justify-content:flex-end}@media(max-width:480px){.logo{font-size:1.45rem}nav.menu a{padding:6px 8px;font-size:.74rem}}
+nav.menu a{font:700 .82rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.07em;color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 11px}
+nav.menu a:hover{border-color:var(--volt);color:var(--volt)}
+
+/* Couverture */
+.cover{position:relative;overflow:hidden;background:radial-gradient(circle at 30% 60%,#3b7bff 0%,#1a2f9e 38%,var(--night) 75%);color:#fff;border-bottom:4px solid var(--line)}
+.cover::before{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 30% 60%,rgba(255,210,63,.16) 0 2deg,transparent 2deg 9deg);animation:spin 60s linear infinite}
+.cover::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1.2px,transparent 1.6px);background-size:7px 7px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cover .wrap{position:relative;z-index:1;display:grid;gap:28px;padding-block:44px 52px}
+@media(min-width:860px){.cover .wrap{grid-template-columns:1.25fr 1fr;align-items:center}}
+.kicker{display:inline-block;font:700 .85rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.1em;background:var(--volt);color:#141a33;padding:7px 12px;border:2px solid #000;transform:skew(-8deg)}
+.cover h1{font:400 clamp(2.6rem,7vw,4.6rem)/.95 var(--f-display);letter-spacing:.03em;margin:.35em 0 .3em;text-shadow:4px 4px 0 #000}
+.cover h1 em{font-style:normal;color:var(--volt)}
+.cover p.lead{font-size:1.12rem;max-width:34em;color:#e4e9ff;margin:0}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 1rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.07em;text-decoration:none;cursor:pointer;border:3px solid #000;border-radius:10px;padding:13px 18px;background:var(--volt);color:#141a33;box-shadow:4px 4px 0 #000;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000}
+.btn.blue{background:var(--sky);color:#fff}.btn.ghost{background:transparent;color:inherit;border-color:currentColor;box-shadow:none}
+/* Jauge de puissance : quelle démarche demande un pro */
+.power{background:rgba(5,9,35,.55);border:3px solid #000;border-radius:14px;padding:18px;box-shadow:6px 6px 0 #000}
+.power h2{font:400 1.5rem/1 var(--f-display);letter-spacing:.05em;margin:0 0 4px;color:var(--volt)}
+.power p{margin:0 0 12px;color:#cfd6ff;font-size:.92rem}
+.pl{display:grid;grid-template-columns:7.2em 1fr;gap:6px 10px;align-items:center;font:700 .9rem/1.2 var(--f-cond);text-transform:uppercase;letter-spacing:.04em}
+.pl .bar{height:14px;border:2px solid #000;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.pl .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--volt),var(--energy))}
+.pl small{grid-column:2;font:500 .8rem/1.3 var(--f-body);text-transform:none;letter-spacing:0;color:#cfd6ff;margin-top:-2px}
+
+/* Chapitres */
+section.chap{padding-block:46px 10px}
+.chap-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.chap-num{font:400 1rem/1 var(--f-display);letter-spacing:.08em;background:var(--energy);color:#141a33;border:2px solid var(--line);padding:6px 10px 4px;transform:rotate(-3deg)}
+.chap h2{font:400 clamp(2rem,4.5vw,2.8rem)/1 var(--f-display);letter-spacing:.04em;margin:0}
+.chap .intro{color:var(--muted);max-width:44em;margin:0 0 20px}
+.panel{background:var(--surface);border:3px solid var(--line);border-radius:14px;box-shadow:6px 6px 0 var(--line)}
+
+/* Outil générateur */
+.tool{display:grid;gap:22px}
+@media(min-width:960px){.tool{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}}
+form.f{padding:20px;display:grid;gap:14px;min-width:0}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:12px}
+legend{font:400 1.25rem/1 var(--f-display);letter-spacing:.05em;color:var(--sky);margin-bottom:6px;padding:0}
+.row{display:grid;gap:12px}@media(min-width:560px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:1fr 1fr 1fr}}
+label{display:grid;gap:4px;font:700 .82rem/1.2 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);min-width:0}
+input,select,textarea{font:500 1rem/1.3 var(--f-body);color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:64px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{display:flex;align-items:center;gap:6px;border:2px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;color:var(--ink);background:var(--paper)}
+.seg input{width:auto;accent-color:var(--energy)}
+.seg label:has(input:checked){background:var(--volt);color:#141a33}
+.check{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font:500 .95rem/1.3 var(--f-body);color:var(--ink)}
+.check input{width:auto;accent-color:var(--energy)}
+.note{font-size:.88rem;color:var(--muted);margin:0}
+.alert{border:2px solid var(--warn);background:color-mix(in srgb,var(--warn) 10%,transparent);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.example{display:inline-block;font:700 .75rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.08em;background:var(--energy);color:#141a33;border-radius:999px;padding:5px 9px}
+
+/* Document généré */
+.docbox{min-width:0;display:grid;gap:12px}
+.doc-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.doc{background:var(--doc);color:#1b1b1b;border:3px solid var(--line);border-radius:6px;box-shadow:6px 6px 0 var(--line);padding:26px 22px;font:15px/1.55 var(--f-doc);max-height:78vh;overflow:auto}
+.doc h3{font:700 1.15rem/1.25 var(--f-doc);text-align:center;text-transform:uppercase;margin:0 0 4px}
+.doc .sub{text-align:center;font-size:.85rem;margin:0 0 18px;color:#555}
+.doc h4{font:700 .98rem/1.3 var(--f-doc);text-transform:uppercase;margin:18px 0 6px;border-bottom:1px solid #bbb;padding-bottom:3px}
+.doc p{margin:.35em 0}
+.doc .sign{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.doc .sign div{border-top:1px solid #999;padding-top:6px;min-height:70px;font-size:.85rem}
+.doc .blank{display:inline-block;min-width:8em;border-bottom:1px dotted #777;color:#a33}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);background:var(--volt);color:#141a33;border:3px solid #000;border-radius:999px;padding:9px 16px;font:700 .9rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.06em;box-shadow:4px 4px 0 #000;z-index:50}
+
+/* Guides */
+.guides{display:grid;gap:18px}
+@media(min-width:760px){.guides{grid-template-columns:1fr 1fr}}
+details.g{background:var(--surface);border:3px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);overflow:hidden}
+details.g summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:16px 18px}
+details.g summary::-webkit-details-marker{display:none}
+details.g summary .ico{font-size:1.6rem;line-height:1}
+details.g summary b{font:400 1.45rem/1 var(--f-display);letter-spacing:.04em}
+details.g summary small{display:block;font:500 .88rem/1.3 var(--f-body);color:var(--muted)}
+details.g summary .lvl{margin-left:auto;font:700 .72rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--line);border-radius:999px;padding:5px 8px;white-space:nowrap}
+.lvl.free{background:color-mix(in srgb,var(--ok) 22%,transparent)}.lvl.pro{background:color-mix(in srgb,var(--energy) 30%,transparent)}
+details.g .body{padding:0 18px 18px;border-top:2px dashed var(--line)}
+details.g ol{padding-left:1.2em;margin:.8em 0}details.g li{margin:.35em 0}
+.who{font:700 .85rem/1.3 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--sky);margin:.8em 0 .2em}
+
+/* Bas de page */
+.limits{margin-block:46px 0;padding:22px;display:grid;gap:10px}
+.limits h2{font:400 1.7rem/1 var(--f-display);letter-spacing:.04em;margin:0}
+.limits ul{margin:0;padding-left:1.2em}
+footer.bottom{margin-top:46px;background:var(--night);color:#cfd6ff;border-top:4px solid var(--volt)}
+footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:.92rem}
+.mail{font-weight:700;color:#fff;user-select:all}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cover::before{animation:none}.btn{transition:none}}
+</style>
+<style>[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#haut">POWER <span>PAPIERS</span></a>
+  <nav class="menu" aria-label="Sections"><a href="#bail">Bail</a><a href="#quittance">Quittance</a><a href="#guides">Guides</a></nav>
+</div></header>
+
+<main id="haut">
+<section class="cover" aria-labelledby="t-cover"><div class="wrap">
+  <div>
+    <span class="kicker">Aide aux démarches · gratuit</span>
+    <h1 id="t-cover">Tes papiers passent au <em>niveau supérieur</em></h1>
+    <p class="lead">Un bail prêt à signer dans la journée, une quittance en trente secondes, et des guides clairs pour le mariage, le divorce, la succession, ton entreprise ou la vente d'une maison. Tu sais quoi faire, dans quel ordre, et quand il te faut un professionnel.</p>
+    <div class="ctas"><a class="btn" href="#bail">⚡ Créer mon bail</a><a class="btn blue" href="#quittance">Faire une quittance</a><a class="btn ghost" href="#guides">Voir les guides</a></div>
+  </div>
+  <aside class="power" aria-labelledby="t-power">
+    <h2 id="t-power">Niveau de puissance</h2>
+    <p>Ce que tu peux faire seul, et ce qui exige un professionnel.</p>
+    <div class="pl">
+      <span>Bail, quittance</span><span class="bar"><i style="width:22%"></i></span><small>Tu le fais toi-même ici, en quelques minutes.</small>
+      <span>Mariage</span><span class="bar"><i style="width:38%"></i></span><small>Dossier en mairie. Notaire seulement pour un contrat de mariage.</small>
+      <span>Entreprise</span><span class="bar"><i style="width:50%"></i></span><small>Déclaration en ligne. Un comptable aide pour les statuts de société.</small>
+      <span>Vente maison</span><span class="bar"><i style="width:78%"></i></span><small>Notaire obligatoire pour l'acte de vente.</small>
+      <span>Divorce</span><span class="bar"><i style="width:88%"></i></span><small>Un avocat pour chaque époux, même à l'amiable.</small>
+      <span>Succession</span><span class="bar"><i style="width:92%"></i></span><small>Notaire obligatoire dès qu'il y a un bien immobilier.</small>
+    </div>
+  </aside>
+</div></section>
+
+<!-- BAIL -->
+<section class="chap wrap" id="bail" aria-labelledby="t-bail">
+  <div class="chap-head"><span class="chap-num">Outil 1</span><h2 id="t-bail">Bail d'habitation</h2></div>
+  <p class="intro">Remplis le formulaire : le bail s'écrit en direct à côté (en dessous sur téléphone), selon la loi du 6 juillet 1989. Les champs sont pré-remplis avec un <span class="example">exemple</span> à remplacer par tes informations.</p>
+  <div class="tool">
+    <form class="f panel" id="fBail" autocomplete="off">
+      <fieldset><legend>Le type de bail</legend>
+        <div class="seg" role="radiogroup" aria-label="Type de location">
+          <label><input type="radio" name="type" id="tVide" value="vide" checked> Logement vide</label>
+          <label><input type="radio" name="type" id="tMeuble" value="meuble"> Meublé</label>
+          <label><input type="radio" name="type" id="tEtu" value="etudiant"> Meublé étudiant</label>
+        </div>
+      </fieldset>
+      <fieldset><legend>Les parties</legend>
+        <div class="row two">
+          <label>Bailleur (nom et prénom)<input id="bNom" value="Jean Dupont"></label>
+          <label>Adresse du bailleur<input id="bAdr" value="12 rue des Lilas, 70290 Champagney"></label>
+        </div>
+        <div class="row two">
+          <label>Locataire(s)<input id="lNom" value="Léa Martin"></label>
+          <label>Garant (facultatif)<input id="gNom" placeholder="Nom du garant"></label>
+        </div>
+      </fieldset>
+      <fieldset><legend>Le logement</legend>
+        <label>Adresse du logement<input id="adr" value="3 place de la Mairie, appartement 2, 70290 Champagney"></label>
+        <div class="row three">
+          <label>Type<select id="nature"><option>Appartement</option><option>Maison</option><option>Studio</option></select></label>
+          <label>Surface habitable (m²)<input id="surf" type="number" min="9" step="0.1" value="48"></label>
+          <label>Pièces principales<input id="pieces" type="number" min="1" value="2"></label>
+        </div>
+        <div class="row two">
+          <label>Annexes (cave, garage…)<input id="annexes" value="Une cave"></label>
+          <label>Classe énergie (DPE)<select id="dpe"><option>A</option><option>B</option><option>C</option><option selected>D</option><option>E</option><option>F</option><option>G</option></select></label>
+        </div>
+        <label>Équipements<input id="equip" value="Cuisine équipée, chauffage individuel au gaz"></label>
+        <p class="alert" id="dpeAlert" hidden>Depuis le 1er janvier 2025, un logement classé G n'est plus considéré comme décent : il ne peut plus faire l'objet d'un nouveau bail. Des travaux de rénovation énergétique sont nécessaires avant de louer.</p>
+      </fieldset>
+      <fieldset><legend>L'argent</legend>
+        <div class="row three">
+          <label>Loyer mensuel hors charges (€)<input id="loyer" type="number" min="0" step="0.01" value="520"></label>
+          <label>Charges mensuelles (€)<input id="charges" type="number" min="0" step="0.01" value="40"></label>
+          <label>Dépôt de garantie (€)<input id="depot" type="number" min="0" step="0.01" value="520"></label>
+        </div>
+        <div class="row two">
+          <label>Les charges sont<select id="modeCharges"><option value="provision">Une provision, régularisée chaque année</option><option value="forfait">Un forfait (meublé uniquement)</option></select></label>
+          <label>Loyer payé le<select id="jour"></select></label>
+        </div>
+        <label class="check"><input type="checkbox" id="zt"> Le logement est en zone tendue (encadrement ou plafonnement des loyers)</label>
+        <p class="alert" id="depotAlert" hidden></p>
+      </fieldset>
+      <fieldset><legend>Dates</legend>
+        <div class="row two">
+          <label>Début du bail<input id="debut" type="date"></label>
+          <label>Fait à<input id="lieu" value="Champagney"></label>
+        </div>
+      </fieldset>
+      <p class="note">Ce modèle suit le contrat type du décret n° 2015-587. Pour un cas particulier (colocation, logement social, location saisonnière), demande conseil gratuitement à l'ADIL de ton département.</p>
+    </form>
+
+    <div class="docbox">
+      <div class="doc-actions">
+        <button class="btn" type="button" id="copyBail">Copier le bail</button>
+        <button class="btn blue" type="button" id="printBail" hidden>Imprimer ou PDF</button>
+        <span class="note">Fais-le relire par l'autre partie avant de signer.</span>
+      </div>
+      <article class="doc" id="docBail" aria-live="polite"></article>
+    </div>
+  </div>
+</section>
+
+<!-- QUITTANCE -->
+<section class="chap wrap" id="quittance" aria-labelledby="t-quit">
+  <div class="chap-head"><span class="chap-num">Outil 2</span><h2 id="t-quit">Quittance de loyer</h2></div>
+  <p class="intro">Le locataire peut demander une quittance chaque mois, et elle doit lui être remise gratuitement. Elle prouve que le loyer et les charges sont payés.</p>
+  <div class="tool">
+    <form class="f panel" id="fQuit" autocomplete="off">
+      <div class="row two">
+        <label>Bailleur<input id="qB" value="Jean Dupont"></label>
+        <label>Locataire<input id="qL" value="Léa Martin"></label>
+      </div>
+      <label>Adresse du logement<input id="qAdr" value="3 place de la Mairie, appartement 2, 70290 Champagney"></label>
+      <div class="row three">
+        <label>Mois payé<input id="qMois" type="month"></label>
+        <label>Loyer (€)<input id="qLoyer" type="number" step="0.01" value="520"></label>
+        <label>Charges (€)<input id="qCh" type="number" step="0.01" value="40"></label>
+      </div>
+      <div class="row two">
+        <label>Payé le<input id="qPaye" type="date"></label>
+        <label>Fait à<input id="qLieu" value="Champagney"></label>
+      </div>
+    </form>
+    <div class="docbox">
+      <div class="doc-actions">
+        <button class="btn" type="button" id="copyQuit">Copier la quittance</button>
+        <button class="btn blue" type="button" id="printQuit" hidden>Imprimer ou PDF</button>
+      </div>
+      <article class="doc" id="docQuit" aria-live="polite"></article>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES -->
+<section class="chap wrap" id="guides" aria-labelledby="t-guides">
+  <div class="chap-head"><span class="chap-num">Chapitre 3</span><h2 id="t-guides">Les guides des grandes étapes</h2></div>
+  <p class="intro">Pour chaque démarche : les étapes dans l'ordre, qui est obligatoire, et les pièges à éviter. Touche un guide pour l'ouvrir.</p>
+  <div class="guides">
+    <details class="g"><summary><span class="ico">💍</span><span><b>Se marier</b><small>Mairie, dossier, contrat de mariage</small></span><span class="lvl free">Sans pro</span></summary><div class="body">
+      <ol>
+        <li>Retire le dossier dans la mairie où l'un de vous habite (ou où vivent vos parents).</li>
+        <li>Rassemble les pièces : pièce d'identité, justificatif de domicile, copie intégrale de l'acte de naissance récente, et les informations sur les témoins (2 à 4).</li>
+        <li>Dépose le dossier. La mairie publie les bans pendant 10 jours avant la cérémonie.</li>
+        <li>Choisis ton régime : sans contrat, c'est la communauté réduite aux acquêts. Pour un autre régime (séparation de biens…), signe un contrat chez le notaire avant le mariage.</li>
+        <li>Le jour J, à la mairie, l'officier d'état civil vous remet le livret de famille.</li>
+      </ol>
+      <p class="who">Qui est obligatoire</p><p>Personne d'autre que la mairie. Le notaire seulement si tu veux un contrat de mariage.</p>
+    </div></details>
+
+    <details class="g"><summary><span class="ico">💔</span><span><b>Divorcer</b><small>À l'amiable ou devant le juge</small></span><span class="lvl pro">Avocat obligatoire</span></summary><div class="body">
+      <ol>
+        <li><strong>Divorce à l'amiable (consentement mutuel)</strong> : chaque époux prend son propre avocat. Les avocats rédigent ensemble une convention (garde des enfants, pension, partage).</li>
+        <li>Chaque époux reçoit le projet de convention et dispose d'un délai de réflexion de 15 jours avant de signer.</li>
+        <li>La convention signée est déposée chez un notaire, ce qui rend le divorce effectif.</li>
+        <li>Si un enfant mineur demande à être entendu par le juge, ou en cas de désaccord, le divorce passe devant le juge aux affaires familiales.</li>
+        <li>S'il y a un bien immobilier commun, son partage passe par un notaire.</li>
+      </ol>
+      <p class="who">Qui est obligatoire</p><p>Un avocat pour chacun, puis un notaire pour le dépôt. L'aide juridictionnelle peut prendre en charge les frais d'avocat selon tes revenus.</p>
+    </div></details>
+
+    <details class="g"><summary><span class="ico">🕊️</span><span><b>Gérer une succession</b><small>Après un décès dans la famille</small></span><span class="lvl pro">Notaire souvent obligatoire</span></summary><div class="body">
+      <ol>
+        <li>Fais établir l'acte de décès à la mairie et demande plusieurs copies.</li>
+        <li>Préviens la banque, la caisse de retraite, l'employeur, l'assurance maladie et les assurances (pense à l'assurance vie).</li>
+        <li>Contacte un notaire : il est obligatoire s'il y a un bien immobilier, un testament ou une donation.</li>
+        <li>Chaque héritier choisit : accepter, accepter seulement à hauteur de ce que la succession contient (pour ne pas payer de dettes au-delà), ou renoncer.</li>
+        <li>La déclaration de succession est à déposer aux impôts dans les 6 mois après le décès (décès en France).</li>
+      </ol>
+      <p class="who">Qui est obligatoire</p><p>Le notaire dans la plupart des cas. Pour une petite succession sans bien immobilier, les héritiers peuvent parfois se débrouiller seuls avec une attestation.</p>
+    </div></details>
+
+    <details class="g"><summary><span class="ico">🚀</span><span><b>Créer son entreprise</b><small>Avec peu de moyens</small></span><span class="lvl free">Sans pro au départ</span></summary><div class="body">
+      <ol>
+        <li>Écris ton projet en une page : ce que tu vends, à qui, à quel prix, combien il te faut pour démarrer.</li>
+        <li>Choisis ton statut. Pour tester une activité seul et à petit budget, la micro-entreprise est la plus simple. Une société (SASU, EURL) protège davantage mais demande des statuts.</li>
+        <li>Déclare ton activité gratuitement sur le guichet unique : formalites.entreprises.gouv.fr.</li>
+        <li>Ouvre un compte bancaire dédié à l'activité, même quand ce n'est pas encore obligatoire : c'est beaucoup plus clair pour ta compta.</li>
+        <li>Renseigne-toi sur les aides à la création (ACRE, accompagnement par France Travail, réseaux de prêts d'honneur).</li>
+        <li>Pour une banque, prépare un business plan : prévision de chiffre d'affaires, dépenses, besoin de financement.</li>
+      </ol>
+      <p class="who">Qui est utile</p><p>Un expert-comptable dès que tu crées une société ou que tes comptes se compliquent. La CCI ou la Chambre des métiers propose aussi un accompagnement.</p>
+    </div></details>
+
+    <details class="g"><summary><span class="ico">🏡</span><span><b>Vendre ou acheter un logement</b><small>Du compromis à l'acte de vente</small></span><span class="lvl pro">Notaire obligatoire</span></summary><div class="body">
+      <ol>
+        <li>Le vendeur fait réaliser les diagnostics obligatoires (DPE, amiante, plomb, électricité, gaz, termites… selon le logement).</li>
+        <li>Acheteur et vendeur signent un avant-contrat (compromis ou promesse de vente), chez le notaire ou l'agent immobilier.</li>
+        <li>L'acheteur dispose de 10 jours pour se rétracter sans motif.</li>
+        <li>Si l'achat dépend d'un prêt, le compromis prévoit une condition : sans prêt accordé, l'acheteur récupère son acompte.</li>
+        <li>La vente devient définitive à la signature de l'acte authentique chez le notaire, en général 2 à 3 mois plus tard.</li>
+      </ol>
+      <p class="who">Qui est obligatoire</p><p>Le notaire pour l'acte de vente. Les « frais de notaire » sont surtout des taxes reversées à l'État.</p>
+    </div></details>
+
+    <details class="g"><summary><span class="ico">🔑</span><span><b>Louer son logement</b><small>Avant, pendant et après le bail</small></span><span class="lvl free">Sans pro</span></summary><div class="body">
+      <ol>
+        <li>Vérifie que le logement est décent (surface, chauffage, sécurité) et que son DPE permet de le louer.</li>
+        <li>Rassemble le dossier de diagnostics à joindre au bail.</li>
+        <li>Rédige le bail avec <a href="#bail">l'outil ci-dessus</a> et fais un état des lieux d'entrée, signé par les deux.</li>
+        <li>Chaque année, tu peux réviser le loyer selon l'indice de référence des loyers (IRL), si le bail le prévoit.</li>
+        <li>Au départ du locataire : état des lieux de sortie, puis restitution du dépôt de garantie dans un délai d'un mois si tout est conforme, deux mois sinon.</li>
+      </ol>
+      <p class="who">Qui aide gratuitement</p><p>L'ADIL de ton département répond gratuitement aux propriétaires comme aux locataires.</p>
+    </div></details>
+  </div>
+</section>
+
+<section class="wrap"><div class="limits panel">
+  <h2>Ce que Power Papiers fait, et ne fait pas</h2>
+  <p>Power Papiers est un service bénévole d'aide aux démarches. Ce n'est pas un cabinet d'avocats, de notaires ou d'experts-comptables, et il ne remplace pas leurs conseils personnalisés.</p>
+  <ul>
+    <li><strong>Conseils juridiques gratuits</strong> : les Points-justice (anciennes maisons de justice et du droit) et les permanences d'avocats gratuites en mairie.</li>
+    <li><strong>Logement</strong> : l'ADIL de ton département.</li>
+    <li><strong>Toutes les démarches officielles</strong> : service-public.fr.</li>
+  </ul>
+</div></section>
+</main>
+
+<footer class="bottom"><div class="wrap">
+  <span><strong style="color:#fff">POWER PAPIERS</strong> · un projet bénévole de la famille Véloce Mercato</span>
+  <span>Contact : <span class="mail" id="mail">Velocemercato87@gmail.com</span></span>
+</div></footer>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+var val=function(id){return ($(id).value||'').trim();};
+var blank=function(v,ph){return v?esc(v):'<span class="blank">'+esc(ph||'à compléter')+'</span>';};
+var eur=function(n){var x=Number(n);return isFinite(x)&&n!==''?x.toLocaleString('fr-FR',{style:'currency',currency:'EUR'}):'<span class="blank">montant</span>';};
+var dfr=function(d){if(!d)return '<span class="blank">date</span>';var x=new Date(d+'T12:00:00');return isNaN(x)?esc(d):x.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});};
+var toast=function(m){var t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){t.hidden=true;},2400);};
+
+/* valeurs par défaut */
+var today=new Date(),iso=function(d){return d.toISOString().slice(0,10);};
+var first=new Date(today.getFullYear(),today.getMonth()+1,1,12);
+$('debut').value=iso(first);
+$('qMois').value=today.toISOString().slice(0,7);
+$('qPaye').value=iso(new Date(today.getFullYear(),today.getMonth(),5,12));
+for(var j=1;j<=28;j++){var o=document.createElement('option');o.value=j;o.textContent=(j===1?'1er':j)+' du mois';if(j===5)o.selected=true;$('jour').appendChild(o);}
+
+/* impression : seulement quand le site est ouvert directement (pas dans un aperçu) */
+var canPrint=window.self===window.top;
+['printBail','printQuit'].forEach(function(id){ $(id).hidden=!canPrint; });
+var printDoc=function(id){var w=window.open('','_blank');if(!w){toast('Autorise les fenêtres pour imprimer');return;}
+  w.document.write('<!doctype html><meta charset="utf-8"><title>Document</title><style>body{font:14px/1.55 "Courier Prime","Courier New",monospace;max-width:720px;margin:30px auto;padding:0 20px;color:#111}h3{text-align:center;text-transform:uppercase}h4{text-transform:uppercase;border-bottom:1px solid #999;margin-top:18px}.sub{text-align:center;color:#555}.sign{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}.sign div{border-top:1px solid #999;min-height:80px;padding-top:6px}.blank{color:#a33;border-bottom:1px dotted #777}</style>'+$(id).innerHTML);
+  w.document.close();w.focus();w.print();};
+$('printBail').onclick=function(){printDoc('docBail');};
+$('printQuit').onclick=function(){printDoc('docQuit');};
+
+var copyDoc=function(id,label){var text=$(id).innerText;
+  var fallback=function(){var r=document.createRange();r.selectNodeContents($(id));var s=getSelection();s.removeAllRanges();s.addRange(r);toast('Texte sélectionné : copie-le');};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast(label+' copié');},fallback);}else fallback();};
+$('copyBail').onclick=function(){copyDoc('docBail','Bail');};
+$('copyQuit').onclick=function(){copyDoc('docQuit','Quittance');};
+
+/* ===== BAIL ===== */
+function bail(){
+  var type=document.querySelector('input[name=type]:checked').value;
+  var meuble=type!=='vide';
+  var duree={vide:'trois (3) ans',meuble:'un (1) an',etudiant:'neuf (9) mois'}[type];
+  var loyer=val('loyer'),ch=val('charges'),dep=val('depot');
+  var forfait=val('modeCharges')==='forfait'&&meuble;
+  if(!meuble&&$('modeCharges').value==='forfait'){$('modeCharges').value='provision';}
+  /* alertes */
+  $('dpeAlert').hidden=val('dpe')!=='G';
+  var maxDep=meuble?2:1, L=Number(loyer)||0, D=Number(dep)||0;
+  if(L>0&&D>L*maxDep+0.001){$('depotAlert').hidden=false;$('depotAlert').textContent='Le dépôt de garantie ne peut pas dépasser '+(meuble?'deux mois':'un mois')+' de loyer hors charges, soit '+(L*maxDep).toLocaleString('fr-FR',{style:'currency',currency:'EUR'})+' ici.';}
+  else $('depotAlert').hidden=true;
+  var zt=$('zt').checked;
+  var preavisL=(meuble||zt)?'un (1) mois':'trois (3) mois';
+  var preavisB=meuble?'trois (3) mois':'six (6) mois';
+  var plusieurs=/(\bet\b|,|&)/i.test(val('lNom'));
+  var h='';
+  h+='<h3>Contrat de location '+(meuble?'meublée':'vide')+'</h3>';
+  h+='<p class="sub">Logement à usage de résidence principale · loi n° 89-462 du 6 juillet 1989'+(type==='etudiant'?' · bail étudiant':'')+'</p>';
+  h+='<h4>I. Les parties</h4>';
+  h+='<p><strong>Le bailleur</strong> : '+blank(val('bNom'),'nom du bailleur')+', demeurant '+blank(val('bAdr'),'adresse')+'.</p>';
+  h+='<p><strong>'+(plusieurs?'Les locataires':'Le locataire')+'</strong> : '+blank(val('lNom'),'nom du locataire')+'.</p>';
+  if(val('gNom'))h+='<p><strong>Caution</strong> : '+esc(val('gNom'))+', qui se porte garant par un acte de cautionnement séparé, annexé au présent contrat.</p>';
+  h+='<h4>II. Le logement</h4>';
+  h+='<p>Adresse : '+blank(val('adr'),'adresse du logement')+'.</p>';
+  h+='<p>Type : '+esc(val('nature'))+' · surface habitable : '+blank(val('surf'),'surface')+' m² · '+blank(val('pieces'),'nombre')+' pièce(s) principale(s).</p>';
+  if(val('annexes'))h+='<p>Locaux et équipements accessoires à usage privatif : '+esc(val('annexes'))+'.</p>';
+  if(val('equip'))h+='<p>Équipements : '+esc(val('equip'))+'.</p>';
+  h+='<p>Performance énergétique (DPE) : classe '+esc(val('dpe'))+'.</p>';
+  if(meuble)h+='<p>Le logement est loué meublé : il comporte les éléments de mobilier exigés par le décret n° 2015-981 (literie, plaques de cuisson, four ou micro-ondes, réfrigérateur et congélateur, vaisselle, table et sièges, rangements, luminaires, matériel d\'entretien). La liste figure à l\'inventaire annexé.</p>';
+  h+='<h4>III. Date de prise d\'effet et durée</h4>';
+  h+='<p>Le contrat prend effet le '+dfr(val('debut'))+' pour une durée de '+duree+'.</p>';
+  h+= type==='etudiant'
+    ? '<p>À son terme, le bail étudiant prend fin sans reconduction : le locataire n\'a pas besoin de donner congé.</p>'
+    : '<p>À défaut de congé donné dans les formes et délais légaux, il est reconduit tacitement pour la même durée'+(meuble?'':' (trois ans lorsque le bailleur est une personne physique)')+'.</p>';
+  h+='<h4>IV. Conditions financières</h4>';
+  h+='<p>Loyer mensuel hors charges : <strong>'+eur(loyer)+'</strong>, payable d\'avance le '+esc($('jour').value==='1'?'1er':$('jour').value)+' de chaque mois.</p>';
+  h+= forfait
+    ? '<p>Charges : forfait mensuel de <strong>'+eur(ch)+'</strong>, sans régularisation, révisable chaque année dans les mêmes conditions que le loyer.</p>'
+    : '<p>Charges récupérables : provision mensuelle de <strong>'+eur(ch)+'</strong>, régularisée chaque année au vu des dépenses réelles. Les justificatifs sont tenus à la disposition du locataire.</p>';
+  h+='<p>Total mensuel : <strong>'+eur((Number(loyer)||0)+(Number(ch)||0))+'</strong>.</p>';
+  h+='<p>Révision du loyer : le loyer est révisé chaque année à la date anniversaire du contrat, selon la variation de l\'indice de référence des loyers (IRL) publié par l\'INSEE, l\'indice de référence étant celui du dernier trimestre connu à la date de signature.</p>';
+  if(zt)h+='<p>Le logement est situé en zone tendue : le loyer respecte les règles d\'encadrement ou de plafonnement applicables à la commune. Le montant du loyer de référence et, le cas échéant, celui du dernier locataire sont indiqués ici : <span class="blank">à compléter</span>.</p>';
+  h+='<h4>V. Dépôt de garantie</h4>';
+  h+='<p>Le locataire verse un dépôt de garantie de <strong>'+eur(dep)+'</strong> (au maximum '+(meuble?'deux mois':'un mois')+' de loyer hors charges). Il est restitué dans un délai d\'un mois après la remise des clés si l\'état des lieux de sortie est conforme à celui d\'entrée, de deux mois dans le cas contraire, déduction faite des sommes justifiées restant dues.</p>';
+  if(plusieurs)h+='<h4>VI. Solidarité</h4><p>Les locataires sont tenus solidairement et indivisiblement au paiement du loyer, des charges et de toutes les obligations du présent bail.</p>';
+  h+='<h4>'+(plusieurs?'VII':'VI')+'. Obligations</h4>';
+  h+='<p><strong>Le bailleur</strong> remet un logement décent, en bon état d\'usage et de réparation, assure au locataire la jouissance paisible du logement et effectue les réparations autres que locatives.</p>';
+  h+='<p><strong>Le locataire</strong> paie le loyer et les charges aux termes convenus, use paisiblement du logement, l\'entretient et prend en charge les réparations locatives, souscrit une assurance contre les risques locatifs et en justifie chaque année, et ne transforme pas les lieux sans l\'accord écrit du bailleur.</p>';
+  h+='<h4>'+(plusieurs?'VIII':'VII')+'. Congé</h4>';
+  h+='<p>Le locataire peut donner congé à tout moment, avec un préavis de '+preavisL+'. Le bailleur peut donner congé pour le terme du bail, avec un préavis de '+preavisB+', pour vendre le logement, le reprendre pour y habiter ou pour un motif légitime et sérieux.</p>';
+  h+='<p>Le congé est notifié par lettre recommandée avec accusé de réception, par acte de commissaire de justice ou remis en main propre contre récépissé.</p>';
+  h+='<h4>'+(plusieurs?'IX':'VIII')+'. Clause résolutoire</h4>';
+  h+='<p>Le bail sera résilié de plein droit en cas de défaut de paiement du loyer, des charges ou du dépôt de garantie, ou de défaut d\'assurance du locataire, après un commandement de payer ou de justifier de l\'assurance resté sans effet dans les délais prévus par la loi.</p>';
+  h+='<h4>'+(plusieurs?'X':'IX')+'. Annexes remises au locataire</h4>';
+  h+='<p>— La notice d\'information sur les droits et obligations des locataires et des bailleurs.<br>— L\'état des lieux d\'entrée'+(meuble?' et l\'inventaire détaillé du mobilier':'')+'.<br>— Le dossier de diagnostic technique : DPE, état des risques, et selon le logement constat de risque d\'exposition au plomb, diagnostics électricité et gaz, information amiante.<br>— Le cas échéant, les extraits du règlement de copropriété'+(val('gNom')?' et l\'acte de cautionnement':'')+'.</p>';
+  h+='<p style="margin-top:16px">Fait à '+blank(val('lieu'),'ville')+', le <span class="blank">date de signature</span>, en autant d\'exemplaires originaux que de parties.</p>';
+  h+='<div class="sign"><div>Le bailleur<br>'+esc(val('bNom'))+'</div><div>'+(plusieurs?'Les locataires':'Le locataire')+'<br>'+esc(val('lNom'))+'</div></div>';
+  $('docBail').innerHTML=h;
+}
+
+/* ===== QUITTANCE ===== */
+function quittance(){
+  var m=val('qMois'),lbl='<span class="blank">mois</span>',debut='',fin='';
+  if(m){var p=m.split('-'),y=+p[0],mo=+p[1]-1;var a=new Date(y,mo,1,12),b=new Date(y,mo+1,0,12);
+    lbl=a.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});debut=a.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});fin=b.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}
+  var t=(Number(val('qLoyer'))||0)+(Number(val('qCh'))||0);
+  var h='<h3>Quittance de loyer</h3><p class="sub">'+esc(lbl)+'</p>';
+  h+='<p>Je soussigné(e) '+blank(val('qB'),'bailleur')+', propriétaire du logement situé '+blank(val('qAdr'),'adresse')+', déclare avoir reçu de '+blank(val('qL'),'locataire')+' la somme de <strong>'+eur(t)+'</strong> au titre du paiement du loyer et des charges pour la période du '+(debut||'<span class="blank">début</span>')+' au '+(fin||'<span class="blank">fin</span>')+'.</p>';
+  h+='<h4>Détail du paiement</h4>';
+  h+='<p>Loyer hors charges : '+eur(val('qLoyer'))+'<br>Provision ou forfait de charges : '+eur(val('qCh'))+'<br><strong>Total réglé : '+eur(t)+'</strong><br>Date du paiement : '+dfr(val('qPaye'))+'</p>';
+  h+='<p>Cette quittance annule tous les reçus qui auraient pu être établis précédemment pour la même période. Elle est délivrée gratuitement, sous réserve de tous droits et sans préjudice des sommes qui resteraient dues.</p>';
+  h+='<p style="margin-top:16px">Fait à '+blank(val('qLieu'),'ville')+', le '+dfr(iso(new Date()))+'.</p>';
+  h+='<div class="sign"><div>Le bailleur<br>'+esc(val('qB'))+'</div><div></div></div>';
+  $('docQuit').innerHTML=h;
+}
+
+$('fBail').addEventListener('input',bail);$('fBail').addEventListener('change',bail);
+$('fBail').addEventListener('submit',function(e){e.preventDefault();});
+$('fQuit').addEventListener('input',quittance);$('fQuit').addEventListener('submit',function(e){e.preventDefault();});
+bail();quittance();
+})();
+</script>
+
+</body>
+</html>
