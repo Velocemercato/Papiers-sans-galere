@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1640'/%3E%3Ctext x='32' y='44' font-family='Impact,sans-serif' font-size='28' font-style='italic' text-anchor='middle' fill='%23ffd23f'%3EPP%3C/text%3E%3C/svg%3E">
-<meta property="og:title" content="Power Papiers"><meta property="og:description" content="Bail et quittance en quelques minutes, guides clairs pour toutes les grandes démarches.">
-<title>Power Papiers</title>
-<meta name="description" content="Power Papiers : bail d'habitation et quittance de loyer générés en quelques minutes, et guides clairs pour le mariage, le divorce, la succession, la création d'entreprise et la vente d'un logement.">
+<meta property="og:title" content="Papiers Sans Galère"><meta property="og:description" content="Bail et quittance en quelques minutes, guides clairs pour toutes les grandes démarches.">
+<title>Papiers Sans Galère</title>
+<meta name="description" content="Papiers Sans Galère : bail d'habitation et quittance de loyer générés en quelques minutes, et guides clairs pour le mariage, le divorce, la succession, la création d'entreprise et la vente d'un logement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Courier+Prime:wght@400;700&display=swap">
 <style>
@@ -43,9 +43,9 @@ a{color:var(--sky)}
 /* En-tête */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--night);border-bottom:4px solid var(--volt)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
-.logo{font:400 1.9rem/1 var(--f-display);letter-spacing:.04em;color:#fff;text-decoration:none;transform:skew(-8deg);display:inline-block;text-shadow:3px 3px 0 #000}
-.logo span{color:var(--volt);-webkit-text-stroke:1px #000}
-nav.menu{display:flex;gap:5px;flex-wrap:nowrap;justify-content:flex-end}@media(max-width:480px){.logo{font-size:1.45rem}nav.menu a{padding:6px 8px;font-size:.74rem}}
+.logo{font:400 1.7rem/1 var(--f-display);letter-spacing:.04em;color:#fff;text-decoration:none;transform:skew(-8deg);display:inline-block;text-shadow:3px 3px 0 #000}
+.logo span{color:var(--volt);-webkit-text-stroke:1px #000;white-space:nowrap}@media(max-width:480px){.logo span{display:block}}
+nav.menu{display:flex;gap:5px;flex-wrap:nowrap;justify-content:flex-end;min-width:0;overflow-x:auto}@media(max-width:480px){.logo{font-size:1.15rem}nav.menu a{padding:6px 7px;font-size:.7rem;letter-spacing:.03em}}
 nav.menu a{font:700 .82rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.07em;color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 11px}
 nav.menu a:hover{border-color:var(--volt);color:var(--volt)}
 
@@ -144,7 +144,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
 
 
 <header class="top"><div class="wrap">
-  <a class="logo" href="#haut">POWER <span>PAPIERS</span></a>
+  <a class="logo" href="#haut">PAPIERS <span>SANS GALÈRE</span></a>
   <nav class="menu" aria-label="Sections"><a href="#bail">Bail</a><a href="#quittance">Quittance</a><a href="#guides">Guides</a></nav>
 </div></header>
 
@@ -157,7 +157,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
     <div class="ctas"><a class="btn" href="#bail">⚡ Créer mon bail</a><a class="btn blue" href="#quittance">Faire une quittance</a><a class="btn ghost" href="#guides">Voir les guides</a></div>
   </div>
   <aside class="power" aria-labelledby="t-power">
-    <h2 id="t-power">Niveau de puissance</h2>
+    <h2 id="t-power">Niveau de galère</h2>
     <p>Ce que tu peux faire seul, et ce qui exige un professionnel.</p>
     <div class="pl">
       <span>Bail, quittance</span><span class="bar"><i style="width:22%"></i></span><small>Tu le fais toi-même ici, en quelques minutes.</small>
@@ -346,8 +346,8 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
 </section>
 
 <section class="wrap"><div class="limits panel">
-  <h2>Ce que Power Papiers fait, et ne fait pas</h2>
-  <p>Power Papiers est un service bénévole d'aide aux démarches. Ce n'est pas un cabinet d'avocats, de notaires ou d'experts-comptables, et il ne remplace pas leurs conseils personnalisés.</p>
+  <h2>Ce que Papiers Sans Galère fait, et ne fait pas</h2>
+  <p>Papiers Sans Galère est un service bénévole d'aide aux démarches. Ce n'est pas un cabinet d'avocats, de notaires ou d'experts-comptables, et il ne remplace pas leurs conseils personnalisés.</p>
   <ul>
     <li><strong>Conseils juridiques gratuits</strong> : les Points-justice (anciennes maisons de justice et du droit) et les permanences d'avocats gratuites en mairie.</li>
     <li><strong>Logement</strong> : l'ADIL de ton département.</li>
@@ -357,7 +357,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
 </main>
 
 <footer class="bottom"><div class="wrap">
-  <span><strong style="color:#fff">POWER PAPIERS</strong> · un projet bénévole de la famille Véloce Mercato</span>
+  <span><strong style="color:#fff">PAPIERS SANS GALÈRE</strong> · un projet bénévole de la famille Véloce Mercato</span>
   <span>Contact : <span class="mail" id="mail">Velocemercato87@gmail.com</span></span>
 </div></footer>
 <div class="toast" id="toast" hidden></div>
