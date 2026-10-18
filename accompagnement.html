@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Accompagnement – Papiers Sans Galère (démonstration)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Démonstration du parcours d'accompagnement : un bandeau « mode test », une bascule client / administrateur, des planches manga par étape. */
+:root{
+  --night:#0d1640;--paper:#fff8ec;--ink:#141a33;--muted:#5a6182;--energy:#ff7a1a;--volt:#ffd23f;--sky:#2f6bff;
+  --line:#141a33;--surface:#ffffff;--doc:#fffdf7;--ok:#1f9d5c;--warn:#d9480f;--dot:rgba(20,26,51,.09);
+  --f-display:'Bangers',Impact,'Arial Black',sans-serif;--f-body:'Barlow',system-ui,sans-serif;--f-cond:'Barlow Condensed','Arial Narrow',sans-serif;--f-doc:'Courier Prime','Courier New',monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b1030;--ink:#eef1ff;--muted:#a3abcf;--line:#e3e8ff;--surface:#141c4a;--dot:rgba(200,210,255,.08);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0b1030;--ink:#eef1ff;--muted:#a3abcf;--line:#e3e8ff;--surface:#141c4a;--dot:rgba(200,210,255,.08);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 var(--f-body);background-image:radial-gradient(var(--dot) 1.3px,transparent 1.5px);background-size:9px 9px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--sky)}:focus-visible{outline:3px solid var(--volt);outline-offset:3px}
+h1,h2,h3{text-wrap:balance}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--night);border-bottom:4px solid var(--volt)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:10px}
+.logo{font:400 1.5rem/1 var(--f-display);letter-spacing:.04em;color:#fff;text-decoration:none;transform:skew(-8deg);display:inline-block;text-shadow:3px 3px 0 #000}
+.logo span{color:var(--volt)}
+.demo{background:repeating-linear-gradient(-45deg,var(--volt) 0 14px,#ffe680 14px 28px);color:#141a33;border-bottom:3px solid #000;font:700 .9rem/1.3 var(--f-cond);text-transform:uppercase;letter-spacing:.05em}
+.demo .wrap{padding-block:8px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.switch{display:inline-flex;border:3px solid #000;border-radius:999px;overflow:hidden;background:#fff}
+.switch button{font:700 .85rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;border:0;padding:8px 12px;background:transparent;color:#141a33;cursor:pointer}
+.switch button[aria-pressed=true]{background:#141a33;color:var(--volt)}
+main{padding-block:22px 50px}
+.panel{background:var(--surface);border:3px solid var(--line);border-radius:14px;box-shadow:6px 6px 0 var(--line);padding:18px;min-width:0}
+.grid{display:grid;gap:18px}
+@media(min-width:860px){.cols{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}}
+h1.title{font:400 clamp(2rem,6vw,3rem)/1 var(--f-display);letter-spacing:.04em;margin:0 0 6px}
+h2{font:400 1.6rem/1.05 var(--f-display);letter-spacing:.04em;margin:0 0 10px}
+h3{font:700 1.05rem/1.3 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--sky);margin:14px 0 6px}
+.lead{color:var(--muted);margin:0 0 16px;max-width:46em}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs button{font:700 .9rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--surface);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--volt);color:#141a33}
+label{display:grid;gap:4px;font:700 .82rem/1.2 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+input,select,textarea{font:500 1rem/1.35 var(--f-body);color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+textarea{min-height:110px;resize:vertical}
+.check{display:flex;gap:8px;align-items:flex-start;text-transform:none;letter-spacing:0;font:500 .95rem/1.4 var(--f-body);color:var(--ink)}
+.check input{width:auto;margin-top:4px;accent-color:var(--energy)}
+form{display:grid;gap:12px}
+.row2{display:grid;gap:12px}@media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 1rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;cursor:pointer;border:3px solid #000;border-radius:10px;padding:12px 16px;background:var(--volt);color:#141a33;box-shadow:4px 4px 0 #000}
+.btn.blue{background:var(--sky);color:#fff}.btn.green{background:var(--ok);color:#fff}.btn.ghost{background:var(--surface);color:var(--ink)}.btn.red{background:var(--warn);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.alert{border:2px solid var(--warn);border-radius:10px;padding:10px 12px;font-size:.95rem;background:color-mix(in srgb,var(--warn) 10%,transparent)}
+.info{border:2px solid var(--sky);border-radius:10px;padding:10px 12px;font-size:.95rem;background:color-mix(in srgb,var(--sky) 9%,transparent)}
+.note{font-size:.88rem;color:var(--muted);margin:0}
+.list{display:grid;gap:10px}
+.item{text-align:left;width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface);color:var(--ink);cursor:pointer;display:grid;gap:6px;font:inherit}
+.item[aria-current=true]{border-color:var(--sky);box-shadow:4px 4px 0 var(--sky)}
+.item b{font-size:1.02rem}.item small{color:var(--muted)}
+.badge{display:inline-block;font:700 .74rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--line);border-radius:999px;padding:5px 8px;justify-self:start}
+.s-recue{background:#e6ecff;color:#141a33}.s-etude{background:#fff1c2;color:#141a33}.s-devis{background:#ffd9b8;color:#141a33}.s-paye{background:#c8f2da;color:#141a33}
+.s-prepa{background:#d8e4ff;color:#141a33}.s-verif{background:#ffe08a;color:#141a33}.s-termine{background:var(--ok);color:#fff}.s-hors{background:#eee;color:#555}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px;padding:0;list-style:none}
+.steps li{font:700 .72rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.04em;border:2px solid var(--line);border-radius:999px;padding:5px 8px;opacity:.4}
+.steps li.done{opacity:1;background:var(--volt);color:#141a33}
+.thread{display:grid;gap:8px;max-height:280px;overflow:auto;padding:4px}
+.msg{border:2px solid var(--line);border-radius:12px;padding:8px 10px;max-width:88%;font-size:.95rem;white-space:pre-wrap}
+.msg.me{justify-self:end;background:color-mix(in srgb,var(--volt) 35%,var(--surface))}
+.msg.them{justify-self:start;background:var(--surface)}
+.msg small{display:block;color:var(--muted);font-size:.75rem;margin-bottom:2px}
+.quote{border:3px dashed var(--line);border-radius:12px;padding:12px;background:var(--doc);color:#1b1b1b}
+.quote table{width:100%;border-collapse:collapse;font-size:.95rem}.quote td{padding:5px 4px;border-bottom:1px solid #ddd}.quote td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.total{font:400 1.6rem/1 var(--f-display);letter-spacing:.04em}
+.doc{background:var(--doc);color:#1b1b1b;border:2px solid var(--line);border-radius:8px;padding:14px;font:14px/1.5 var(--f-doc);white-space:pre-wrap;max-height:320px;overflow:auto}
+.lines{display:grid;gap:8px}
+.line{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;gap:8px;align-items:end}
+.del{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:9px 10px;cursor:pointer}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(5,9,23,.7);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px))}
+.modal .panel{max-width:440px;width:100%}
+.stripe{display:flex;align-items:center;justify-content:space-between;gap:8px;font:700 .85rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.empty{border:2px dashed var(--line);border-radius:12px;padding:16px;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);background:var(--volt);color:#141a33;border:3px solid #000;border-radius:999px;padding:9px 16px;font:700 .9rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;box-shadow:4px 4px 0 #000;z-index:70}
+footer{border-top:4px solid var(--volt);background:var(--night);color:#cfd6ff}
+footer .wrap{padding-block:18px;font-size:.9rem}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="index.html">PAPIERS <span>SANS GALÈRE</span></a><a href="index.html" style="color:#fff;font:700 .85rem/1 var(--f-cond);text-transform:uppercase">Espace gratuit →</a></div></header>
+<div class="demo" role="note"><div class="wrap"><span>⚠️ Mode démonstration : aucune donnée réelle, aucun paiement réel</span>
+<span class="switch" role="group" aria-label="Changer de vue"><button type="button" id="vClient" aria-pressed="true">Vue client</button><button type="button" id="vAdmin" aria-pressed="false">Vue administrateur</button></span></div></div>
+
+<main class="wrap">
+
+<!-- ===== VUE CLIENT ===== -->
+<section id="client">
+  <h1 class="title">Accompagnement administratif</h1>
+  <p class="lead">Pose ta question gratuitement. Si ta démarche relève de l'assistance administrative, tu reçois un devis clair (prix, délai, ce qui est inclus et ce qui ne l'est pas). Tu ne paies qu'après l'avoir accepté. Beaucoup de démarches officielles sont gratuites : nous te le dirons si c'est le cas.</p>
+  <div class="tabs" role="tablist" aria-label="Mon espace">
+    <button type="button" role="tab" data-ctab="demande" aria-selected="true">Faire une demande</button>
+    <button type="button" role="tab" data-ctab="dossiers" aria-selected="false">Mes dossiers</button>
+  </div>
+
+  <div id="cDemande" class="panel">
+    <h2>Faire une demande</h2>
+    <form id="fReq" autocomplete="off">
+      <div class="row2">
+        <label>Sujet<select id="rSujet"><option value="logement">Logement</option><option value="aides">Aides et démarches (CAF, retraite, santé…)</option><option value="famille">Famille (papiers, changement de situation)</option><option value="entreprise">Création d'entreprise</option><option value="budget">Budget</option><option value="autre">Autre</option></select></label>
+        <label>Ton prénom ou pseudo<input id="rNom" placeholder="Ex. : Sam (fictif en démo)"></label>
+      </div>
+      <label>Titre de ta demande<input id="rTitre" placeholder="Ex. : Remplir ma demande d'aide au logement"></label>
+      <label>Décris ta situation en quelques phrases<textarea id="rTexte" placeholder="Ce que tu veux faire, où tu en es, ce qui te bloque. N'écris pas de numéro de sécurité sociale, de compte bancaire ni de mot de passe."></textarea></label>
+      <p class="alert" id="rScope" hidden></p>
+      <label class="check"><input type="checkbox" id="rOk1"> Je n'envoie aucun document ni information sensible à ce stade (pièce d'identité, avis d'imposition, numéro de sécurité sociale, coordonnées bancaires, mots de passe).</label>
+      <label class="check"><input type="checkbox" id="rOk2"> J'ai compris que la demande est gratuite et sans engagement, et qu'il s'agit d'une aide administrative, pas d'un conseil juridique.</label>
+      <div class="actions"><button class="btn" type="submit" id="rSend">Envoyer ma demande</button></div>
+      <p class="note">On ne te demandera jamais tes mots de passe FranceConnect, CAF, impôts ou autres comptes.</p>
+    </form>
+  </div>
+
+  <div id="cDossiers" hidden>
+    <div class="grid cols">
+      <div class="panel"><h2>Mes dossiers</h2><div class="list" id="cList"></div></div>
+      <div class="panel" id="cDetail"><div class="empty">Choisis un dossier pour voir son avancement, tes messages, ton devis et tes documents.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VUE ADMIN ===== -->
+<section id="admin" hidden>
+  <h1 class="title">Administration</h1>
+  <p class="lead">Demandes reçues, devis, paiements et préparation des documents. Dans la vraie version, cet espace est protégé par une connexion sécurisée et les dossiers sont stockés dans une base de données chiffrée, jamais sur GitHub.</p>
+  <div class="tabs" role="tablist" aria-label="Filtrer" id="aFilters"></div>
+  <div class="grid cols">
+    <div class="panel"><h2>Demandes</h2><div class="list" id="aList"></div></div>
+    <div class="panel" id="aDetail"><div class="empty">Choisis une demande pour l'étudier.</div></div>
+  </div>
+</section>
+
+<p class="note" style="margin-top:22px"><button class="btn ghost" type="button" id="reset">Réinitialiser la démonstration</button></p>
+</main>
+
+<div class="modal" id="payModal" hidden role="dialog" aria-modal="true" aria-labelledby="payTitle"><div class="panel">
+  <div class="stripe"><span>Paiement sécurisé</span><span>Mode test</span></div>
+  <h2 id="payTitle" style="margin-top:8px">Paiement de ton devis</h2>
+  <p id="payAmount" class="total"></p>
+  <p class="info">Démonstration : aucune carte n'est demandée et aucun argent n'est prélevé. Dans la vraie version, le paiement se fait sur la page sécurisée du prestataire (par exemple Stripe), et le serveur ne passe le dossier en préparation qu'après la confirmation réelle du paiement.</p>
+  <div class="actions"><button class="btn green" type="button" id="payOk">Simuler un paiement réussi</button><button class="btn ghost" type="button" id="payCancel">Annuler</button></div>
+</div></div>
+<div class="toast" id="toast" hidden></div>
+
+<footer><div class="wrap">Papiers Sans Galère · démonstration du service d'accompagnement administratif. Pour un conseil juridique : avocat, notaire, Point-justice. Pour le logement : ADIL. Démarches officielles : service-public.fr.</div></footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+var eur=function(n){return (Number(n)||0).toLocaleString('fr-FR',{style:'currency',currency:'EUR'});};
+var now=function(){return new Date().toISOString();};
+var hm=function(iso){var d=new Date(iso);return d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});};
+var toast=function(m){var t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){t.hidden=true;},2400);};
+
+var STATUS={recue:'Demande reçue',etude:'En étude',devis:'Devis envoyé',paye:'Paiement confirmé',prepa:'En préparation',verif:'À vérifier',termine:'Terminé',hors:'Hors périmètre'};
+var ORDER=['recue','etude','devis','paye','prepa','verif','termine'];
+var CLS={recue:'s-recue',etude:'s-etude',devis:'s-devis',paye:'s-paye',prepa:'s-prepa',verif:'s-verif',termine:'s-termine',hors:'s-hors'};
+var SUJETS={logement:'Logement',aides:'Aides et démarches',famille:'Famille',entreprise:"Création d'entreprise",budget:'Budget',autre:'Autre'};
+/* demandes qui relèvent d'un professionnel du droit : on oriente, on ne vend pas */
+var JURIDIQUE=/\b(divorc|succession|h[ée]ritage|testament|avocat|tribunal|proc[èe]s|litige|plainte|prud.?hom|licenci|expulsion|garde des enfants|pension alimentaire contest|contrat de mariage|donation|notaire)/i;
+var ORIENT="Ta demande semble relever d'un conseil juridique (divorce, succession, litige, procédure…). Ce type de conseil est réservé aux avocats, notaires et professionnels agréés. Tu peux obtenir une aide gratuite dans un Point-justice ou auprès des permanences d'avocats de ta mairie. Nous pouvons en revanche t'aider pour les formulaires administratifs qui en découlent (CAF, changement de situation…).";
+
+/* ---- stockage de démonstration (navigateur uniquement) ---- */
+var KEY='psg-accompagnement-demo-v1',db;
+var seed=function(){var t=Date.now();return {seq:3,dossiers:[
+ {id:'D-0001',exemple:true,sujet:'aides',nom:'Sam (exemple fictif)',titre:"Demande d'aide au logement après un déménagement",texte:"Je viens de déménager et je ne sais pas comment faire ma demande d'aide au logement en ligne. Je ne comprends pas quelles pièces fournir.",status:'devis',created:new Date(t-86400000*2).toISOString(),
+  messages:[{from:'client',t:new Date(t-86400000*2).toISOString(),txt:"Bonjour, je suis perdu avec ma demande d'aide au logement."},{from:'admin',t:new Date(t-86400000).toISOString(),txt:"Bonjour Sam, c'est tout à fait possible. Je vous ai envoyé un devis : préparation de la liste des pièces, accompagnement pour remplir la demande en ligne avec vous, et vérification avant envoi."}],
+  devis:{lignes:[{lib:'Liste personnalisée des pièces à réunir',prix:15},{lib:'Accompagnement pour remplir la demande en ligne (1 h, à distance)',prix:30}],delai:'5 jours ouvrés',exclusions:"La décision appartient à la CAF. Aucun mot de passe n'est demandé : la saisie se fait avec vous, sur votre compte.",accepte:false},
+  paiement:null,docs:[],brouillon:'',iaAutorisee:false},
+ {id:'D-0002',exemple:true,sujet:'famille',nom:'Alex (exemple fictif)',titre:'Divorce : qui garde la maison ?',texte:"Nous divorçons et je veux savoir qui garde la maison et comment partager.",status:'hors',created:new Date(t-86400000*3).toISOString(),
+  messages:[{from:'client',t:new Date(t-86400000*3).toISOString(),txt:'Qui garde la maison après le divorce ?'},{from:'admin',t:new Date(t-86400000*3+3600000).toISOString(),txt:ORIENT}],devis:null,paiement:null,docs:[],brouillon:'',iaAutorisee:false}
+]};};
+var load=function(){try{var s=localStorage.getItem(KEY);if(s){db=JSON.parse(s);return;}}catch(e){}db=seed();};
+var save=function(){try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}};
+load();
+var find=function(id){return db.dossiers.find(function(d){return d.id===id;});};
+var total=function(d){return d&&d.devis?d.devis.lignes.reduce(function(s,l){return s+(Number(l.prix)||0);},0):0;};
+var setStatus=function(d,s){d.status=s;d.updated=now();};
+var badge=function(s){return '<span class="badge '+CLS[s]+'">'+esc(STATUS[s])+'</span>';};
+var steps=function(s){if(s==='hors')return '';var i=ORDER.indexOf(s);return '<ol class="steps">'+ORDER.map(function(k,j){return '<li class="'+(j<=i?'done':'')+'">'+esc(STATUS[k])+'</li>';}).join('')+'</ol>';};
+var thread=function(d,me){return '<div class="thread">'+(d.messages.length?d.messages.map(function(m){var mine=m.from===me;return '<div class="msg '+(mine?'me':'them')+'"><small>'+(m.from==='admin'?'Papiers Sans Galère':esc(d.nom))+' · '+hm(m.t)+'</small>'+esc(m.txt)+'</div>';}).join(''):'<p class="note">Aucun message.</p>')+'</div>';};
+
+/* ---- bascule de vue ---- */
+var view='client',cTab='demande',cSel=null,aSel=null,aFilter='tous';
+var setView=function(v){view=v;$('client').hidden=v!=='client';$('admin').hidden=v!=='admin';$('vClient').setAttribute('aria-pressed',String(v==='client'));$('vAdmin').setAttribute('aria-pressed',String(v==='admin'));render();};
+$('vClient').onclick=function(){setView('client');};$('vAdmin').onclick=function(){setView('admin');};
+[].forEach.call(document.querySelectorAll('[data-ctab]'),function(b){b.onclick=function(){cTab=b.dataset.ctab;render();};});
+
+/* ---- formulaire de demande ---- */
+var scope=function(){var t=$('rTitre').value+' '+$('rTexte').value;var j=JURIDIQUE.test(t);$('rScope').hidden=!j;if(j)$('rScope').textContent=ORIENT;return j;};
+$('fReq').addEventListener('input',scope);
+$('fReq').addEventListener('submit',function(e){e.preventDefault();
+  if(!$('rTitre').value.trim()||!$('rTexte').value.trim()){toast('Indique un titre et décris ta situation');return;}
+  if(!$('rOk1').checked||!$('rOk2').checked){toast('Coche les deux cases pour continuer');return;}
+  if(/\b\d[\s.]?\d{2}[\s.]?\d{2}[\s.]?\d{2}[\s.]?\d{3}[\s.]?\d{3}\b|FR\d{2}[\s\d]{10,}|mot de passe\s*[:=]/i.test($('rTexte').value)){toast('Retire les numéros ou mots de passe de ton message');return;}
+  db.seq++;var id='D-'+String(db.seq).padStart(4,'0');var j=scope();
+  var d={id:id,sujet:$('rSujet').value,nom:$('rNom').value.trim()||'Visiteur',titre:$('rTitre').value.trim(),texte:$('rTexte').value.trim(),status:'recue',created:now(),messages:[{from:'client',t:now(),txt:$('rTexte').value.trim()}],devis:null,paiement:null,docs:[],brouillon:'',iaAutorisee:false,signalJuridique:j};
+  db.dossiers.unshift(d);save();$('fReq').reset();$('rScope').hidden=true;cTab='dossiers';cSel=id;render();toast('Demande envoyée : '+id);
+});
+
+/* ---- rendu client ---- */
+function renderClient(){
+  [].forEach.call(document.querySelectorAll('[data-ctab]'),function(b){b.setAttribute('aria-selected',String(b.dataset.ctab===cTab));});
+  $('cDemande').hidden=cTab!=='demande';$('cDossiers').hidden=cTab!=='dossiers';
+  $('cList').innerHTML=db.dossiers.length?db.dossiers.map(function(d){return '<button type="button" class="item" data-id="'+d.id+'" aria-current="'+(d.id===cSel)+'"><b>'+esc(d.titre)+'</b><small>'+d.id+' · '+esc(SUJETS[d.sujet])+' · '+hm(d.created)+'</small>'+badge(d.status)+'</button>';}).join(''):'<div class="empty">Aucun dossier.</div>';
+  [].forEach.call($('cList').querySelectorAll('.item'),function(b){b.onclick=function(){cSel=b.dataset.id;render();};});
+  var d=find(cSel),el=$('cDetail');
+  if(!d){el.innerHTML='<div class="empty">Choisis un dossier pour voir son avancement, tes messages, ton devis et tes documents.</div>';return;}
+  var h='<h2>'+esc(d.titre)+'</h2>'+badge(d.status)+steps(d.status);
+  h+='<h3>Messages</h3>'+thread(d,'client')+'<form id="cMsgF" style="margin-top:8px"><label>Ton message<textarea id="cMsg" style="min-height:70px" placeholder="Écris ici, sans information sensible"></textarea></label><div class="actions"><button class="btn ghost" type="submit">Envoyer</button></div></form>';
+  h+='<h3>Mon devis</h3>';
+  if(d.devis&&['devis','paye','prepa','verif','termine'].indexOf(d.status)>=0){
+    h+='<div class="quote"><table>'+d.devis.lignes.map(function(l){return '<tr><td>'+esc(l.lib)+'</td><td class="n">'+eur(l.prix)+'</td></tr>';}).join('')+'<tr><td><strong>Total TTC</strong></td><td class="n"><strong>'+eur(total(d))+'</strong></td></tr></table><p><strong>Délai :</strong> '+esc(d.devis.delai)+'</p><p><strong>Non compris :</strong> '+esc(d.devis.exclusions)+'</p></div>';
+    if(d.status==='devis'){
+      h+='<label class="check" style="margin-top:10px"><input type="checkbox" id="cCgv"> J\'accepte ce devis et les conditions générales de vente. Je demande que la prestation commence avant la fin du délai de rétractation de 14 jours.</label>';
+      h+='<label class="check"><input type="checkbox" id="cIa"> J\'accepte qu\'un outil d\'intelligence artificielle aide à préparer des documents de travail à partir des informations de ce dossier, vérifiés ensuite par un humain (facultatif).</label>';
+      h+='<div class="actions" style="margin-top:8px"><button class="btn green" type="button" id="cPay">Accepter et payer '+eur(total(d))+'</button></div>';
+    }else if(d.paiement)h+='<p class="info">Paiement confirmé le '+hm(d.paiement.t)+' (mode test, référence '+esc(d.paiement.ref)+').</p>';
+  }else h+='<p class="note">'+(d.status==='hors'?'Pas de devis : cette demande relève d\'un professionnel du droit (voir le message).':'Ton devis apparaîtra ici après l\'étude de ta demande.')+'</p>';
+  h+='<h3>Mes documents</h3>'+(d.docs.length?d.docs.map(function(x){return '<p><strong>'+esc(x.nom)+'</strong> · '+hm(x.t)+'</p><div class="doc">'+esc(x.contenu)+'</div>';}).join(''):'<p class="note">Tes documents vérifiés apparaîtront ici.</p>');
+  el.innerHTML=h;
+  $('cMsgF').onsubmit=function(e){e.preventDefault();var v=$('cMsg').value.trim();if(!v)return;d.messages.push({from:'client',t:now(),txt:v});save();render();};
+  if($('cPay'))$('cPay').onclick=function(){if(!$('cCgv').checked){toast('Accepte d\'abord le devis et les conditions');return;}d.iaAutorisee=$('cIa').checked;d.devis.accepte=true;save();$('payAmount').textContent=eur(total(d));$('payModal').hidden=false;$('payOk').focus();};
+}
+$('payCancel').onclick=function(){$('payModal').hidden=true;};
+$('payOk').onclick=function(){var d=find(cSel);if(!d)return;d.paiement={t:now(),ref:'TEST-'+Math.random().toString(36).slice(2,8).toUpperCase(),montant:total(d)};setStatus(d,'paye');d.messages.push({from:'admin',t:now(),txt:'Paiement confirmé (mode test). Ton dossier va passer en préparation.'});save();$('payModal').hidden=true;render();toast('Paiement test confirmé');};
+
+/* ---- documents préparatoires (simulation d'assistance IA, sans IA réelle) ---- */
+var PIECES={logement:['Pièce d\'identité','Bail ou attestation d\'hébergement','Dernières quittances de loyer','Relevé d\'identité bancaire (à saisir toi-même sur le site officiel)'],aides:['Pièce d\'identité','Justificatif de domicile','Derniers justificatifs de ressources','Numéro d\'allocataire si tu en as un (à saisir toi-même)'],famille:['Livret de famille','Justificatif du changement de situation (acte, jugement ou attestation)','Justificatif de domicile'],entreprise:['Pièce d\'identité','Justificatif de domicile','Description de l\'activité','Choix du statut (à confirmer avec un conseiller si besoin)'],budget:['Relevés de comptes des 3 derniers mois (à garder chez toi)','Liste des charges fixes','Liste des crédits en cours'],autre:['Pièce d\'identité','Tout courrier reçu en lien avec la démarche']};
+var draft=function(d){var p=PIECES[d.sujet]||PIECES.autre;return 'DOCUMENT DE TRAVAIL – à vérifier avant transmission\nDossier '+d.id+' · '+SUJETS[d.sujet]+'\n\nObjet : '+d.titre+'\n\n1. Ce que nous allons faire ensemble\n'+(d.devis?d.devis.lignes.map(function(l){return '- '+l.lib;}).join('\n'):'- (prestations du devis)')+'\n\n2. Pièces à préparer (copies, à garder chez toi jusqu\'au rendez-vous)\n'+p.map(function(x){return '- '+x;}).join('\n')+'\n\n3. Étapes\n- Rassembler les pièces ci-dessus.\n- Rendez-vous d\'accompagnement : la saisie se fait sur TON compte officiel, par toi, sans communication de mot de passe.\n- Relecture commune avant envoi. Rien n\'est envoyé sans ton accord.\n\n4. Bon à savoir\n- La démarche officielle elle-même est gratuite.\n- La décision appartient à l\'organisme concerné : aucun résultat n\'est garanti.\n- Pour toute question juridique : Point-justice, avocat ou notaire.';};
+
+/* ---- rendu admin ---- */
+function renderAdmin(){
+  var filters=['tous','recue','etude','devis','paye','prepa','verif','termine','hors'];
+  $('aFilters').innerHTML=filters.map(function(f){var n=f==='tous'?db.dossiers.length:db.dossiers.filter(function(d){return d.status===f;}).length;return '<button type="button" role="tab" aria-selected="'+(f===aFilter)+'" data-f="'+f+'">'+(f==='tous'?'Toutes':esc(STATUS[f]))+' ('+n+')</button>';}).join('');
+  [].forEach.call($('aFilters').children,function(b){b.onclick=function(){aFilter=b.dataset.f;render();};});
+  var list=db.dossiers.filter(function(d){return aFilter==='tous'||d.status===aFilter;});
+  $('aList').innerHTML=list.length?list.map(function(d){return '<button type="button" class="item" data-id="'+d.id+'" aria-current="'+(d.id===aSel)+'"><b>'+esc(d.titre)+'</b><small>'+d.id+' · '+esc(d.nom)+' · '+esc(SUJETS[d.sujet])+(d.signalJuridique?' · ⚠️ juridique ?':'')+'</small>'+badge(d.status)+'</button>';}).join(''):'<div class="empty">Aucune demande.</div>';
+  [].forEach.call($('aList').querySelectorAll('.item'),function(b){b.onclick=function(){aSel=b.dataset.id;var d=find(aSel);if(d&&d.status==='recue'){setStatus(d,'etude');save();}render();};});
+  var d=find(aSel),el=$('aDetail');
+  if(!d){el.innerHTML='<div class="empty">Choisis une demande pour l\'étudier.</div>';return;}
+  var h='<h2>'+esc(d.titre)+'</h2>'+badge(d.status)+steps(d.status)+'<p class="note">'+d.id+' · '+esc(d.nom)+' · '+esc(SUJETS[d.sujet])+' · reçue le '+hm(d.created)+'</p>';
+  if(d.signalJuridique)h+='<p class="alert">Mots-clés juridiques détectés. Vérifie que la demande relève bien de l\'assistance administrative ; sinon, oriente vers un professionnel.</p>';
+  h+='<h3>Demande</h3><div class="doc" style="font-family:var(--f-body)">'+esc(d.texte)+'</div>';
+  h+='<h3>Messages</h3>'+thread(d,'admin')+'<form id="aMsgF" style="margin-top:8px"><label>Répondre<textarea id="aMsg" style="min-height:70px"></textarea></label><div class="actions"><button class="btn ghost" type="submit">Envoyer</button><button class="btn red" type="button" id="aHors">Hors périmètre : orienter</button></div></form>';
+  if(d.status==='etude'||d.status==='recue'){
+    h+='<h3>Proposer un devis</h3><form id="aDevisF"><div class="lines" id="aLines"></div><div class="actions"><button class="btn ghost" type="button" id="aAddLine">+ Ajouter une prestation</button></div>';
+    h+='<div class="row2"><label>Délai<input id="aDelai" value="5 jours ouvrés"></label><label>Total<input id="aTotal" readonly></label></div>';
+    h+='<label>Exclusions (ce qui n\'est pas compris)<textarea id="aExcl" style="min-height:70px">Pas de conseil juridique ou fiscal. Aucun mot de passe demandé. La décision appartient à l\'organisme concerné.</textarea></label>';
+    h+='<div class="actions"><button class="btn" type="submit">Envoyer le devis</button></div></form>';
+  }
+  if(d.status==='devis')h+='<p class="info">Devis de '+eur(total(d))+' envoyé. En attente de l\'acceptation et du paiement du client.</p>';
+  if(d.paiement)h+='<h3>Paiement</h3><p>'+eur(d.paiement.montant)+' · '+hm(d.paiement.t)+' · '+esc(d.paiement.ref)+' (mode test)</p>';
+  if(d.status==='paye'){h+='<div class="actions"><button class="btn blue" type="button" id="aStart">Passer en préparation</button></div>';}
+  if(d.status==='prepa'){
+    h+='<h3>Préparation</h3><p class="note">Assistance IA : '+(d.iaAutorisee?'autorisée par le client.':'non autorisée par le client : prépare le document à la main.')+'</p>';
+    h+='<div class="actions"><button class="btn blue" type="button" id="aIa" '+(d.iaAutorisee?'':'disabled')+'>Générer un brouillon (simulation)</button><button class="btn ghost" type="button" id="aManual">Rédiger à la main</button></div>';
+  }
+  if(d.status==='verif'){
+    h+='<h3>Vérification humaine</h3><label>Document à relire et corriger<textarea id="aDraft" style="min-height:240px;font-family:var(--f-doc)">'+esc(d.brouillon)+'</textarea></label>';
+    h+='<label class="check"><input type="checkbox" id="aChecked"> J\'ai relu ce document : il ne contient pas de conseil juridique et correspond au devis.</label>';
+    h+='<div class="actions"><button class="btn green" type="button" id="aSendDoc">Valider et transmettre au client</button></div>';
+  }
+  if(d.status==='termine')h+='<p class="info">Dossier terminé. Document transmis au client. Pense à supprimer les données au terme de la durée de conservation annoncée.</p>';
+  el.innerHTML=h;
+  $('aMsgF').onsubmit=function(e){e.preventDefault();var v=$('aMsg').value.trim();if(!v)return;d.messages.push({from:'admin',t:now(),txt:v});save();render();};
+  $('aHors').onclick=function(){d.messages.push({from:'admin',t:now(),txt:ORIENT});setStatus(d,'hors');save();render();toast('Demande orientée vers un professionnel');};
+  if($('aDevisF')){
+    var lines=[{lib:'',prix:''}];
+    var drawLines=function(){$('aLines').innerHTML=lines.map(function(l,i){return '<div class="line"><label>Prestation<input data-i="'+i+'" data-k="lib" value="'+esc(l.lib)+'" placeholder="Ex. : accompagnement pour remplir le formulaire (1 h)"></label><label>Prix €<input type="number" min="0" step="1" data-i="'+i+'" data-k="prix" value="'+esc(l.prix)+'"></label><button type="button" class="del" data-del="'+i+'" aria-label="Retirer">✕</button></div>';}).join('');
+      [].forEach.call($('aLines').querySelectorAll('input'),function(inp){inp.oninput=function(){lines[+inp.dataset.i][inp.dataset.k]=inp.value;$('aTotal').value=eur(lines.reduce(function(s,l){return s+(Number(l.prix)||0);},0));};});
+      [].forEach.call($('aLines').querySelectorAll('[data-del]'),function(b){b.onclick=function(){if(lines.length>1){lines.splice(+b.dataset.del,1);drawLines();}};});
+      $('aTotal').value=eur(lines.reduce(function(s,l){return s+(Number(l.prix)||0);},0));};
+    drawLines();
+    $('aAddLine').onclick=function(){lines.push({lib:'',prix:''});drawLines();};
+    $('aDevisF').onsubmit=function(e){e.preventDefault();var ok=lines.filter(function(l){return l.lib.trim()&&Number(l.prix)>0;});
+      if(!ok.length){toast('Ajoute au moins une prestation avec un prix');return;}
+      d.devis={lignes:ok.map(function(l){return {lib:l.lib.trim(),prix:Number(l.prix)};}),delai:$('aDelai').value.trim()||'à convenir',exclusions:$('aExcl').value.trim(),accepte:false};
+      d.messages.push({from:'admin',t:now(),txt:'Je vous ai envoyé un devis de '+eur(total(d))+'. Vous pouvez le consulter dans « Mon devis ».'});setStatus(d,'devis');save();render();toast('Devis envoyé');};
+  }
+  if($('aStart'))$('aStart').onclick=function(){setStatus(d,'prepa');save();render();};
+  if($('aIa'))$('aIa').onclick=function(){d.brouillon=draft(d);setStatus(d,'verif');save();render();toast('Brouillon prêt : à vérifier');};
+  if($('aManual'))$('aManual').onclick=function(){d.brouillon='DOCUMENT DE TRAVAIL – dossier '+d.id+'\n\n';setStatus(d,'verif');save();render();};
+  if($('aSendDoc'))$('aSendDoc').onclick=function(){if(!$('aChecked').checked){toast('Confirme ta relecture');return;}var v=$('aDraft').value.trim();if(!v){toast('Le document est vide');return;}
+    d.brouillon=v;d.docs.push({nom:'Document de travail – '+d.titre,t:now(),contenu:v});d.messages.push({from:'admin',t:now(),txt:'Votre document vérifié est disponible dans « Mes documents ».'});setStatus(d,'termine');save();render();toast('Document transmis');};
+}
+
+function render(){if(view==='client')renderClient();else renderAdmin();}
+$('reset').onclick=function(){db=seed();save();cSel=null;aSel=null;cTab='demande';render();toast('Démonstration réinitialisée');};
+render();
+})();
+</script>
+</body>
+</html>
