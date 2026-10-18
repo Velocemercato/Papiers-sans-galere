@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for u in https://velocemercato.github.io/papiers-sans-galere/ https://velocemercato.github.io/papiers-sans-galere https://velocemercato.github.io/power-papiers/ https://velocemercato.fr/; do
+          for u in https://velocemercato.github.io/Papiers-sans-galere/; do
             c=$(curl -s -o /tmp/p -w '%{http_code} %{redirect_url}' -m 20 "$u"); t=$(grep -o '<title>[^<]*' /tmp/p | head -1)
             echo "::notice::$u => $c $t"
           done
