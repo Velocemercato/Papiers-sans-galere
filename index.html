@@ -46,7 +46,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 .logo{font:400 1.7rem/1 var(--f-display);letter-spacing:.04em;color:#fff;text-decoration:none;transform:skew(-8deg);display:inline-block;text-shadow:3px 3px 0 #000}
 .logo span{color:var(--volt);-webkit-text-stroke:1px #000;white-space:nowrap}@media(max-width:480px){.logo span{display:block}}
 nav.menu{display:flex;gap:5px;flex-wrap:nowrap;justify-content:flex-end;min-width:0;overflow-x:auto}@media(max-width:480px){.logo{font-size:1.15rem}nav.menu a{padding:6px 7px;font-size:.7rem;letter-spacing:.03em}}
-nav.menu a{font:700 .82rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.07em;color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 11px}
+nav.menu a{white-space:nowrap;font:700 .82rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.07em;color:#fff;text-decoration:none;border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 11px}
 nav.menu a:hover{border-color:var(--volt);color:var(--volt)}
 
 /* Couverture */
@@ -129,6 +129,28 @@ details.g .body{padding:0 18px 18px;border-top:2px dashed var(--line)}
 details.g ol{padding-left:1.2em;margin:.8em 0}details.g li{margin:.35em 0}
 .who{font:700 .85rem/1.3 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--sky);margin:.8em 0 .2em}
 
+.toolnav{display:grid;gap:14px}@media(min-width:640px){.toolnav{grid-template-columns:1fr 1fr}}@media(min-width:1000px){.toolnav{grid-template-columns:repeat(4,1fr)}}
+.toolnav a{display:grid;gap:4px;padding:16px;text-decoration:none;color:var(--ink);transition:transform .12s,box-shadow .12s}.toolnav a:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--line)}
+.toolnav b{font:400 1.25rem/1.1 var(--f-display);letter-spacing:.04em}.toolnav span{font-size:.9rem;color:var(--muted)}
+.room{border:2px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:10px;margin-bottom:12px;background:var(--paper)}
+.room-head{display:flex;gap:8px;align-items:end}.room-head label{flex:1}
+.room-del{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:9px 11px;cursor:pointer;font:700 .8rem/1 var(--f-cond);text-transform:uppercase}
+.room-grid{display:grid;gap:8px;grid-template-columns:1fr}@media(min-width:520px){.room-grid{grid-template-columns:1fr 1fr}}
+.doc table{width:100%;border-collapse:collapse;font-size:.85rem;margin:6px 0}.doc th,.doc td{border:1px solid #bbb;padding:4px 6px;text-align:left;vertical-align:top}
+.qbox{padding:18px;display:grid;gap:16px}
+.qthemes{display:flex;flex-wrap:wrap;gap:8px}
+.qthemes button{font:700 .9rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--paper);color:var(--ink);cursor:pointer}
+.qthemes button[aria-selected=true]{background:var(--volt);color:#141a33}
+.qlist{display:grid;gap:8px}
+.qlist button{text-align:left;border:2px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink);font:600 1rem/1.35 var(--f-body);cursor:pointer}
+.qlist button[aria-pressed=true]{border-color:var(--sky);box-shadow:3px 3px 0 var(--sky)}
+.qanswer{border:3px solid var(--line);border-radius:12px;padding:16px;background:var(--paper)}
+.qanswer h3{font:400 1.35rem/1.1 var(--f-display);letter-spacing:.04em;margin:0 0 8px}
+.qanswer ol{padding-left:1.2em;margin:.4em 0}.qanswer li{margin:.3em 0}
+.qown summary{cursor:pointer;font:700 .95rem/1.3 var(--f-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--sky)}
+.qownbody{display:grid;gap:12px;margin-top:12px}
+.mail-inline{font-weight:700;user-select:all}
+button:disabled{opacity:.5;cursor:not-allowed}
 /* Bas de page */
 .limits{margin-block:46px 0;padding:22px;display:grid;gap:10px}
 .limits h2{font:400 1.7rem/1 var(--f-display);letter-spacing:.04em;margin:0}
@@ -145,7 +167,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
 
 <header class="top"><div class="wrap">
   <a class="logo" href="#haut">PAPIERS <span>SANS GALÈRE</span></a>
-  <nav class="menu" aria-label="Sections"><a href="#bail">Bail</a><a href="#quittance">Quittance</a><a href="#guides">Guides</a></nav>
+  <nav class="menu" aria-label="Sections"><a href="#outils">Outils</a><a href="#guides">Guides</a><a href="#question">Ma question</a></nav>
 </div></header>
 
 <main id="haut">
@@ -154,7 +176,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
     <span class="kicker">Aide aux démarches · gratuit</span>
     <h1 id="t-cover">Tes papiers passent au <em>niveau supérieur</em></h1>
     <p class="lead">Un bail prêt à signer dans la journée, une quittance en trente secondes, et des guides clairs pour le mariage, le divorce, la succession, ton entreprise ou la vente d'une maison. Tu sais quoi faire, dans quel ordre, et quand il te faut un professionnel.</p>
-    <div class="ctas"><a class="btn" href="#bail">⚡ Créer mon bail</a><a class="btn blue" href="#quittance">Faire une quittance</a><a class="btn ghost" href="#guides">Voir les guides</a></div>
+    <div class="ctas"><a class="btn" href="#question">❓ Je pose ma question</a><a class="btn blue" href="#outils">Les outils gratuits</a><a class="btn ghost" href="#guides">Voir les guides</a></div>
   </div>
   <aside class="power" aria-labelledby="t-power">
     <h2 id="t-power">Niveau de galère</h2>
@@ -169,6 +191,16 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
     </div>
   </aside>
 </div></section>
+
+<section class="chap wrap" id="outils" aria-labelledby="t-outils">
+  <div class="chap-head"><span class="chap-num">Outils</span><h2 id="t-outils">Tes documents, prêts en quelques minutes</h2></div>
+  <div class="toolnav">
+    <a class="panel" href="#bail"><b>📜 Bail d'habitation</b><span>Vide, meublé ou étudiant, à jour du 1er octobre 2026</span></a>
+    <a class="panel" href="#quittance"><b>🧾 Quittance de loyer</b><span>Ou reçu si le paiement est partiel</span></a>
+    <a class="panel" href="#edl"><b>🔍 État des lieux</b><span>Entrée ou sortie, pièce par pièce</span></a>
+    <a class="panel" href="#conge"><b>✉️ Lettre de congé</b><span>Le locataire quitte le logement, préavis calculé</span></a>
+  </div>
+</section>
 
 <!-- BAIL -->
 <section class="chap wrap" id="bail" aria-labelledby="t-bail">
@@ -189,9 +221,15 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
           <label>Adresse du bailleur<input id="bAdr" value="12 rue des Lilas, 70290 Champagney"></label>
         </div>
         <div class="row two">
+          <label>Le bailleur est<select id="bType"><option value="physique">Une personne physique (ou SCI familiale)</option><option value="morale">Une société (personne morale)</option></select></label>
+          <label>Portable du bailleur (facultatif)<input id="bTel" type="tel" placeholder="06…"></label>
+        </div>
+        <div class="row two">
           <label>Locataire(s)<input id="lNom" value="Léa Martin"></label>
           <label>Garant (facultatif)<input id="gNom" placeholder="Nom du garant"></label>
         </div>
+        <label>Portable du locataire (facultatif)<input id="lTel" type="tel" placeholder="06…"></label>
+        <p class="note">Plusieurs locataires sur un même bail (colocation, couple) : sépare les noms par « et » ou une virgule. La clause de solidarité s'ajoute alors automatiquement.</p>
       </fieldset>
       <fieldset><legend>Le logement</legend>
         <label>Adresse du logement<input id="adr" value="3 place de la Mairie, appartement 2, 70290 Champagney"></label>
@@ -205,7 +243,8 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
           <label>Classe énergie (DPE)<select id="dpe"><option>A</option><option>B</option><option>C</option><option selected>D</option><option>E</option><option>F</option><option>G</option></select></label>
         </div>
         <label>Équipements<input id="equip" value="Cuisine équipée, chauffage individuel au gaz"></label>
-        <p class="alert" id="dpeAlert" hidden>Depuis le 1er janvier 2025, un logement classé G n'est plus considéré comme décent : il ne peut plus faire l'objet d'un nouveau bail. Des travaux de rénovation énergétique sont nécessaires avant de louer.</p>
+        <p class="alert" id="dpeAlert" hidden></p>
+        <label class="check"><input type="checkbox" id="rp"> Le logement est soumis à une obligation d'occupation en résidence principale (servitude prévue par le plan local d'urbanisme, art. L.151-14-1 du code de l'urbanisme)</label>
       </fieldset>
       <fieldset><legend>L'argent</legend>
         <div class="row three">
@@ -218,6 +257,11 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
           <label>Loyer payé le<select id="jour"></select></label>
         </div>
         <label class="check"><input type="checkbox" id="zt"> Le logement est en zone tendue (encadrement ou plafonnement des loyers)</label>
+        <div class="row two" id="ztFields" hidden>
+          <label>Loyer de référence majoré (€/mois, si encadrement)<input id="refMaj" type="number" min="0" step="0.01" placeholder="Facultatif"></label>
+          <label>Dernier loyer du précédent locataire (€)<input id="dernier" type="number" min="0" step="0.01" placeholder="Si moins de 18 mois"></label>
+        </div>
+        <label class="check"><input type="checkbox" id="clauseAssur" checked> Ajouter la clause de résiliation pour défaut d'assurance du locataire</label>
         <p class="alert" id="depotAlert" hidden></p>
       </fieldset>
       <fieldset><legend>Dates</legend>
@@ -226,7 +270,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
           <label>Fait à<input id="lieu" value="Champagney"></label>
         </div>
       </fieldset>
-      <p class="note">Ce modèle suit le contrat type du décret n° 2015-587. Pour un cas particulier (colocation, logement social, location saisonnière), demande conseil gratuitement à l'ADIL de ton département.</p>
+      <p class="note">Ce modèle suit le contrat type du décret n° 2015-587, mis à jour par le décret n° 2026-596 pour les baux signés ou renouvelés depuis le 1er octobre 2026. Pour un cas particulier (colocation, logement social, location saisonnière), demande conseil gratuitement à l'ADIL de ton département.</p>
     </form>
 
     <div class="docbox">
@@ -243,7 +287,7 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
 <!-- QUITTANCE -->
 <section class="chap wrap" id="quittance" aria-labelledby="t-quit">
   <div class="chap-head"><span class="chap-num">Outil 2</span><h2 id="t-quit">Quittance de loyer</h2></div>
-  <p class="intro">Le locataire peut demander une quittance chaque mois, et elle doit lui être remise gratuitement. Elle prouve que le loyer et les charges sont payés.</p>
+  <p class="intro">Le locataire peut demander une quittance chaque mois, et elle doit lui être remise gratuitement. Elle prouve que le loyer et les charges sont payés en totalité. Si le paiement est partiel, l'outil établit automatiquement un reçu, comme le prévoit la loi.</p>
   <div class="tool">
     <form class="f panel" id="fQuit" autocomplete="off">
       <div class="row two">
@@ -256,8 +300,9 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
         <label>Loyer (€)<input id="qLoyer" type="number" step="0.01" value="520"></label>
         <label>Charges (€)<input id="qCh" type="number" step="0.01" value="40"></label>
       </div>
-      <div class="row two">
+      <div class="row three">
         <label>Payé le<input id="qPaye" type="date"></label>
+        <label>Somme réellement reçue (€)<input id="qRecu" type="number" step="0.01" min="0" placeholder="Si différente du total"></label>
         <label>Fait à<input id="qLieu" value="Champagney"></label>
       </div>
     </form>
@@ -271,9 +316,106 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
   </div>
 </section>
 
+<!-- ETAT DES LIEUX -->
+<section class="chap wrap" id="edl" aria-labelledby="t-edl">
+  <div class="chap-head"><span class="chap-num">Outil 3</span><h2 id="t-edl">État des lieux</h2></div>
+  <p class="intro">Il se fait à l'arrivée et au départ du locataire, en présence des deux parties, et chacun garde un exemplaire signé. Décris chaque pièce précisément : c'est lui qui décidera de la restitution du dépôt de garantie. Prends aussi des photos datées.</p>
+  <div class="tool">
+    <form class="f panel" id="fEdl" autocomplete="off">
+      <fieldset><legend>Le moment</legend>
+        <div class="seg" role="radiogroup" aria-label="Entrée ou sortie">
+          <label><input type="radio" name="eType" id="eEntree" value="entree" checked> Entrée</label>
+          <label><input type="radio" name="eType" id="eSortie" value="sortie"> Sortie</label>
+        </div>
+        <div class="row two">
+          <label>Date de l'état des lieux<input id="eDate" type="date"></label>
+          <label>Adresse du logement<input id="eAdr" value="3 place de la Mairie, appartement 2, 70290 Champagney"></label>
+        </div>
+        <div class="row two">
+          <label>Bailleur (ou son mandataire)<input id="eB" value="Jean Dupont"></label>
+          <label>Locataire(s)<input id="eL" value="Léa Martin"></label>
+        </div>
+        <div class="row two" id="eSortieFields" hidden>
+          <label>Nouvelle adresse du locataire<input id="eNewAdr" placeholder="Obligatoire à la sortie"></label>
+          <label>Date de l'état des lieux d'entrée<input id="eDateEntree" type="date"></label>
+        </div>
+      </fieldset>
+      <fieldset><legend>Compteurs et clés</legend>
+        <div class="row two">
+          <label>Électricité (kWh)<input id="cElec" inputmode="decimal" value="12450"></label>
+          <label>Gaz (m³)<input id="cGaz" inputmode="decimal" placeholder="Si gaz"></label>
+        </div>
+        <div class="row two">
+          <label>Eau froide (m³)<input id="cEauF" inputmode="decimal" placeholder="Si compteur individuel"></label>
+          <label>Eau chaude (m³)<input id="cEauC" inputmode="decimal" placeholder="Si compteur individuel"></label>
+        </div>
+        <label>Clés et badges remis (nombre et usage)<input id="cles" value="2 clés de porte d'entrée, 1 badge d'immeuble, 1 clé de boîte aux lettres"></label>
+        <label>Chauffage et eau chaude<input id="chauffage" value="Chaudière gaz individuelle, en fonctionnement"></label>
+      </fieldset>
+      <fieldset><legend>Les pièces</legend>
+        <div id="rooms"></div>
+        <button class="btn ghost" type="button" id="addRoom">+ Ajouter une pièce</button>
+      </fieldset>
+    </form>
+    <div class="docbox">
+      <div class="doc-actions">
+        <button class="btn" type="button" id="copyEdl">Copier l'état des lieux</button>
+        <button class="btn blue" type="button" id="printEdl" hidden>Imprimer ou PDF</button>
+      </div>
+      <article class="doc" id="docEdl" aria-live="polite"></article>
+    </div>
+  </div>
+</section>
+
+<!-- LETTRE DE CONGE -->
+<section class="chap wrap" id="conge" aria-labelledby="t-conge">
+  <div class="chap-head"><span class="chap-num">Outil 4</span><h2 id="t-conge">Lettre de congé du locataire</h2></div>
+  <p class="intro">Pour quitter ton logement. L'outil calcule ton préavis et la date à laquelle il se termine. Le préavis démarre le jour où le propriétaire reçoit la lettre, pas le jour où tu l'envoies.</p>
+  <div class="tool">
+    <form class="f panel" id="fConge" autocomplete="off">
+      <div class="row two">
+        <label>Ton nom (locataire)<input id="kL" value="Léa Martin"></label>
+        <label>Adresse du logement<input id="kAdr" value="3 place de la Mairie, appartement 2, 70290 Champagney"></label>
+      </div>
+      <div class="row two">
+        <label>Nom du propriétaire<input id="kB" value="Jean Dupont"></label>
+        <label>Adresse du propriétaire<input id="kBAdr" value="12 rue des Lilas, 70290 Champagney"></label>
+      </div>
+      <div class="seg" role="radiogroup" aria-label="Type de logement">
+        <label><input type="radio" name="kType" id="kVide" value="vide" checked> Logement vide</label>
+        <label><input type="radio" name="kType" id="kMeuble" value="meuble"> Meublé</label>
+      </div>
+      <label class="check"><input type="checkbox" id="kZt"> Le logement est en zone tendue</label>
+      <label>Motif permettant un préavis d'un mois (logement vide)<select id="kMotif">
+        <option value="">Aucun motif particulier</option>
+        <option value="mutation">Mutation professionnelle</option>
+        <option value="perte">Perte d'emploi</option>
+        <option value="premier">Premier emploi</option>
+        <option value="nouvel">Nouvel emploi après une perte d'emploi</option>
+        <option value="sante">État de santé justifiant un changement de domicile</option>
+        <option value="rsa">Bénéficiaire du RSA ou de l'AAH</option>
+        <option value="social">Attribution d'un logement social</option>
+      </select></label>
+      <div class="row two">
+        <label>Envoi par<select id="kEnvoi"><option value="lrar">Lettre recommandée avec accusé de réception</option><option value="main">Remise en main propre contre signature</option><option value="cj">Commissaire de justice</option></select></label>
+        <label>Date de réception prévue<input id="kRecep" type="date"></label>
+      </div>
+      <p class="alert" id="kAlert" hidden></p>
+    </form>
+    <div class="docbox">
+      <p class="panel" style="padding:14px 16px;margin:0" id="kResume"></p>
+      <div class="doc-actions">
+        <button class="btn" type="button" id="copyConge">Copier la lettre</button>
+        <button class="btn blue" type="button" id="printConge" hidden>Imprimer ou PDF</button>
+      </div>
+      <article class="doc" id="docConge" aria-live="polite"></article>
+    </div>
+  </div>
+</section>
+
 <!-- GUIDES -->
 <section class="chap wrap" id="guides" aria-labelledby="t-guides">
-  <div class="chap-head"><span class="chap-num">Chapitre 3</span><h2 id="t-guides">Les guides des grandes étapes</h2></div>
+  <div class="chap-head"><span class="chap-num">Guides</span><h2 id="t-guides">Les guides des grandes étapes</h2></div>
   <p class="intro">Pour chaque démarche : les étapes dans l'ordre, qui est obligatoire, et les pièges à éviter. Touche un guide pour l'ouvrir.</p>
   <div class="guides">
     <details class="g"><summary><span class="ico">💍</span><span><b>Se marier</b><small>Mairie, dossier, contrat de mariage</small></span><span class="lvl free">Sans pro</span></summary><div class="body">
@@ -345,6 +487,25 @@ footer.bottom .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:12px 24px
   </div>
 </section>
 
+<section class="chap wrap" id="question" aria-labelledby="t-q">
+  <div class="chap-head"><span class="chap-num">Ta question</span><h2 id="t-q">Je pose ma question</h2></div>
+  <p class="intro">Choisis ton sujet, puis la situation qui te ressemble : tu sauras quoi faire en premier et qui peut t'aider gratuitement près de chez toi.</p>
+  <div class="panel qbox">
+    <div class="qthemes" role="tablist" aria-label="Sujets" id="qThemes"></div>
+    <div id="qList" class="qlist"></div>
+    <div id="qAnswer" class="qanswer" hidden></div>
+    <details class="qown" id="qOwn">
+      <summary>Ma question n'est pas dans la liste</summary>
+      <div class="qownbody">
+        <label>Ta question, en quelques phrases<textarea id="qText" placeholder="Exemple : Mon propriétaire veut garder tout mon dépôt de garantie pour un mur un peu sale. A-t-il le droit ?"></textarea></label>
+        <label>Ton département<input id="qDep" placeholder="Exemple : Haute-Saône (70)"></label>
+        <p class="note">N'écris jamais de numéro de sécurité sociale, de compte bancaire ou de mot de passe. Les réponses sont données à titre d'information par des bénévoles et ne remplacent pas l'avis d'un professionnel.</p>
+        <div class="doc-actions"><button class="btn" type="button" id="qCopy">Copier ma question</button><span class="note">Puis envoie-la à <span class="mail-inline" id="qMail">Velocemercato87@gmail.com</span></span></div>
+      </div>
+    </details>
+  </div>
+</section>
+
 <section class="wrap"><div class="limits panel">
   <h2>Ce que Papiers Sans Galère fait, et ne fait pas</h2>
   <p>Papiers Sans Galère est un service bénévole d'aide aux démarches. Ce n'est pas un cabinet d'avocats, de notaires ou d'experts-comptables, et il ne remplace pas leurs conseils personnalisés.</p>
@@ -383,101 +544,273 @@ for(var j=1;j<=28;j++){var o=document.createElement('option');o.value=j;o.textCo
 
 /* impression : seulement quand le site est ouvert directement (pas dans un aperçu) */
 var canPrint=window.self===window.top;
-['printBail','printQuit'].forEach(function(id){ $(id).hidden=!canPrint; });
+['printBail','printQuit','printEdl','printConge'].forEach(function(id){ $(id).hidden=!canPrint; });
 var printDoc=function(id){var w=window.open('','_blank');if(!w){toast('Autorise les fenêtres pour imprimer');return;}
   w.document.write('<!doctype html><meta charset="utf-8"><title>Document</title><style>body{font:14px/1.55 "Courier Prime","Courier New",monospace;max-width:720px;margin:30px auto;padding:0 20px;color:#111}h3{text-align:center;text-transform:uppercase}h4{text-transform:uppercase;border-bottom:1px solid #999;margin-top:18px}.sub{text-align:center;color:#555}.sign{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}.sign div{border-top:1px solid #999;min-height:80px;padding-top:6px}.blank{color:#a33;border-bottom:1px dotted #777}</style>'+$(id).innerHTML);
   w.document.close();w.focus();w.print();};
 $('printBail').onclick=function(){printDoc('docBail');};
-$('printQuit').onclick=function(){printDoc('docQuit');};
+$('printQuit').onclick=function(){printDoc('docQuit');};$('printEdl').onclick=function(){printDoc('docEdl');};$('printConge').onclick=function(){printDoc('docConge');};
 
 var copyDoc=function(id,label){var text=$(id).innerText;
   var fallback=function(){var r=document.createRange();r.selectNodeContents($(id));var s=getSelection();s.removeAllRanges();s.addRange(r);toast('Texte sélectionné : copie-le');};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){toast(label+' copié');},fallback);}else fallback();};
 $('copyBail').onclick=function(){copyDoc('docBail','Bail');};
-$('copyQuit').onclick=function(){copyDoc('docQuit','Quittance');};
+$('copyQuit').onclick=function(){copyDoc('docQuit','Quittance');};$('copyEdl').onclick=function(){copyDoc('docEdl','État des lieux');};$('copyConge').onclick=function(){copyDoc('docConge','Lettre');};
 
 /* ===== BAIL ===== */
+var ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV'];
+function bailRules(){
+  /* toutes les règles légales calculées en un seul endroit (testable) */
+  var type=document.querySelector('input[name=type]:checked').value, meuble=type!=='vide';
+  var morale=val('bType')==='morale', zt=$('zt').checked, dpe=val('dpe');
+  var L=Number(val('loyer'))||0, D=Number(val('depot'))||0;
+  var r={type:type,meuble:meuble,zt:zt,dpe:dpe,
+    duree: type==='etudiant'?'neuf (9) mois':meuble?'un (1) an':morale?'six (6) ans':'trois (3) ans',
+    preavisL:(meuble||zt)?'un (1) mois':'trois (3) mois',
+    preavisB:meuble?'trois (3) mois':'six (6) mois',
+    maxDepotMois:meuble?2:1, depotMax:L*(meuble?2:1),
+    depotTrop:L>0&&D>L*(meuble?2:1)+0.001,
+    interdit:dpe==='G', gelLoyer:dpe==='F'||dpe==='G',
+    forfaitOk:meuble, plusieurs:/(\bet\b|,|&)/i.test(val('lNom'))};
+  return r;
+}
 function bail(){
-  var type=document.querySelector('input[name=type]:checked').value;
-  var meuble=type!=='vide';
-  var duree={vide:'trois (3) ans',meuble:'un (1) an',etudiant:'neuf (9) mois'}[type];
+  var R=bailRules();
+  if(!R.forfaitOk&&$('modeCharges').value==='forfait'){$('modeCharges').value='provision';}
+  $('modeCharges').options[1].disabled=!R.forfaitOk;
   var loyer=val('loyer'),ch=val('charges'),dep=val('depot');
-  var forfait=val('modeCharges')==='forfait'&&meuble;
-  if(!meuble&&$('modeCharges').value==='forfait'){$('modeCharges').value='provision';}
+  var forfait=val('modeCharges')==='forfait'&&R.meuble;
+  $('ztFields').hidden=!R.zt;
   /* alertes */
-  $('dpeAlert').hidden=val('dpe')!=='G';
-  var maxDep=meuble?2:1, L=Number(loyer)||0, D=Number(dep)||0;
-  if(L>0&&D>L*maxDep+0.001){$('depotAlert').hidden=false;$('depotAlert').textContent='Le dépôt de garantie ne peut pas dépasser '+(meuble?'deux mois':'un mois')+' de loyer hors charges, soit '+(L*maxDep).toLocaleString('fr-FR',{style:'currency',currency:'EUR'})+' ici.';}
-  else $('depotAlert').hidden=true;
-  var zt=$('zt').checked;
-  var preavisL=(meuble||zt)?'un (1) mois':'trois (3) mois';
-  var preavisB=meuble?'trois (3) mois':'six (6) mois';
-  var plusieurs=/(\bet\b|,|&)/i.test(val('lNom'));
+  var da=$('dpeAlert');
+  if(R.interdit){da.hidden=false;da.textContent="Logement classé G : depuis le 1er janvier 2025, il n'est plus considéré comme décent et ne peut pas faire l'objet d'un nouveau bail ni d'un renouvellement. Le bail est marqué « non conforme » tant que la classe n'est pas corrigée.";}
+  else if(R.dpe==='F'){da.hidden=false;da.textContent="Logement classé F : son loyer ne peut pas être augmenté (ni révision annuelle, ni hausse entre deux locataires), et il ne pourra plus être loué à partir du 1er janvier 2028 sans travaux.";}
+  else da.hidden=true;
+  var dep$=$('depotAlert');
+  if(R.depotTrop){dep$.hidden=false;dep$.textContent='Le dépôt de garantie ne peut pas dépasser '+(R.meuble?'deux mois':'un mois')+' de loyer hors charges, soit '+R.depotMax.toLocaleString('fr-FR',{style:'currency',currency:'EUR'})+' ici. Le bail affiche ce maximum.';}
+  else dep$.hidden=true;
+  var depAff=R.depotTrop?String(R.depotMax):dep;
+  var n=0,sec=function(t){return '<h4>'+ROMAN[n++]+'. '+t+'</h4>';};
   var h='';
-  h+='<h3>Contrat de location '+(meuble?'meublée':'vide')+'</h3>';
-  h+='<p class="sub">Logement à usage de résidence principale · loi n° 89-462 du 6 juillet 1989'+(type==='etudiant'?' · bail étudiant':'')+'</p>';
-  h+='<h4>I. Les parties</h4>';
-  h+='<p><strong>Le bailleur</strong> : '+blank(val('bNom'),'nom du bailleur')+', demeurant '+blank(val('bAdr'),'adresse')+'.</p>';
-  h+='<p><strong>'+(plusieurs?'Les locataires':'Le locataire')+'</strong> : '+blank(val('lNom'),'nom du locataire')+'.</p>';
+  if(R.interdit)h+='<p style="border:2px solid #b00;color:#b00;padding:8px;font-weight:700;text-align:center">NON CONFORME : un logement classé G ne peut pas être loué. Ne signez pas ce bail.</p>';
+  h+='<h3>Contrat de location '+(R.meuble?'meublée':'vide')+'</h3>';
+  h+='<p class="sub">Logement à usage de résidence principale · loi n° 89-462 du 6 juillet 1989 · contrat type du décret n° 2015-587 modifié par le décret n° 2026-596'+(R.type==='etudiant'?' · bail étudiant':'')+'</p>';
+  h+=sec('Les parties');
+  h+='<p><strong>Le bailleur</strong> : '+blank(val('bNom'),'nom du bailleur')+(val('bType')==='morale'?' (personne morale)':'')+', demeurant '+blank(val('bAdr'),'adresse')+(val('bTel')?', téléphone portable : '+esc(val('bTel')):'')+'.</p>';
+  h+='<p><strong>'+(R.plusieurs?'Les locataires':'Le locataire')+'</strong> : '+blank(val('lNom'),'nom du locataire')+(val('lTel')?', téléphone portable : '+esc(val('lTel')):'')+'.</p>';
   if(val('gNom'))h+='<p><strong>Caution</strong> : '+esc(val('gNom'))+', qui se porte garant par un acte de cautionnement séparé, annexé au présent contrat.</p>';
-  h+='<h4>II. Le logement</h4>';
+  h+=sec('Le logement');
   h+='<p>Adresse : '+blank(val('adr'),'adresse du logement')+'.</p>';
   h+='<p>Type : '+esc(val('nature'))+' · surface habitable : '+blank(val('surf'),'surface')+' m² · '+blank(val('pieces'),'nombre')+' pièce(s) principale(s).</p>';
   if(val('annexes'))h+='<p>Locaux et équipements accessoires à usage privatif : '+esc(val('annexes'))+'.</p>';
   if(val('equip'))h+='<p>Équipements : '+esc(val('equip'))+'.</p>';
-  h+='<p>Performance énergétique (DPE) : classe '+esc(val('dpe'))+'.</p>';
-  if(meuble)h+='<p>Le logement est loué meublé : il comporte les éléments de mobilier exigés par le décret n° 2015-981 (literie, plaques de cuisson, four ou micro-ondes, réfrigérateur et congélateur, vaisselle, table et sièges, rangements, luminaires, matériel d\'entretien). La liste figure à l\'inventaire annexé.</p>';
-  h+='<h4>III. Date de prise d\'effet et durée</h4>';
-  h+='<p>Le contrat prend effet le '+dfr(val('debut'))+' pour une durée de '+duree+'.</p>';
-  h+= type==='etudiant'
+  h+='<p>Performance énergétique (DPE) : classe '+esc(R.dpe)+'.</p>';
+  if($('rp').checked)h+='<p><strong>Obligation de résidence principale</strong> : le logement est situé dans un secteur où le plan local d\'urbanisme impose son occupation à titre de résidence principale (article L.151-14-1 du code de l\'urbanisme). Le locataire s\'engage à l\'occuper au moins huit mois par an. Il ne peut pas être loué en meublé de tourisme.</p>';
+  if(R.meuble)h+='<p>Le logement est loué meublé : il comporte les éléments de mobilier exigés par le décret n° 2015-981 (literie, plaques de cuisson, four ou micro-ondes, réfrigérateur avec compartiment congélation, vaisselle et ustensiles, table et sièges, rangements, luminaires, matériel d\'entretien). La liste figure à l\'inventaire annexé.</p>';
+  h+=sec('Date de prise d\'effet et durée');
+  h+='<p>Le contrat prend effet le '+dfr(val('debut'))+' pour une durée de '+R.duree+'.</p>';
+  h+= R.type==='etudiant'
     ? '<p>À son terme, le bail étudiant prend fin sans reconduction : le locataire n\'a pas besoin de donner congé.</p>'
-    : '<p>À défaut de congé donné dans les formes et délais légaux, il est reconduit tacitement pour la même durée'+(meuble?'':' (trois ans lorsque le bailleur est une personne physique)')+'.</p>';
-  h+='<h4>IV. Conditions financières</h4>';
+    : '<p>À défaut de congé donné dans les formes et délais légaux, il est reconduit tacitement pour la même durée.</p>';
+  h+=sec('Conditions financières');
   h+='<p>Loyer mensuel hors charges : <strong>'+eur(loyer)+'</strong>, payable d\'avance le '+esc($('jour').value==='1'?'1er':$('jour').value)+' de chaque mois.</p>';
   h+= forfait
     ? '<p>Charges : forfait mensuel de <strong>'+eur(ch)+'</strong>, sans régularisation, révisable chaque année dans les mêmes conditions que le loyer.</p>'
     : '<p>Charges récupérables : provision mensuelle de <strong>'+eur(ch)+'</strong>, régularisée chaque année au vu des dépenses réelles. Les justificatifs sont tenus à la disposition du locataire.</p>';
   h+='<p>Total mensuel : <strong>'+eur((Number(loyer)||0)+(Number(ch)||0))+'</strong>.</p>';
-  h+='<p>Révision du loyer : le loyer est révisé chaque année à la date anniversaire du contrat, selon la variation de l\'indice de référence des loyers (IRL) publié par l\'INSEE, l\'indice de référence étant celui du dernier trimestre connu à la date de signature.</p>';
-  if(zt)h+='<p>Le logement est situé en zone tendue : le loyer respecte les règles d\'encadrement ou de plafonnement applicables à la commune. Le montant du loyer de référence et, le cas échéant, celui du dernier locataire sont indiqués ici : <span class="blank">à compléter</span>.</p>';
-  h+='<h4>V. Dépôt de garantie</h4>';
-  h+='<p>Le locataire verse un dépôt de garantie de <strong>'+eur(dep)+'</strong> (au maximum '+(meuble?'deux mois':'un mois')+' de loyer hors charges). Il est restitué dans un délai d\'un mois après la remise des clés si l\'état des lieux de sortie est conforme à celui d\'entrée, de deux mois dans le cas contraire, déduction faite des sommes justifiées restant dues.</p>';
-  if(plusieurs)h+='<h4>VI. Solidarité</h4><p>Les locataires sont tenus solidairement et indivisiblement au paiement du loyer, des charges et de toutes les obligations du présent bail.</p>';
-  h+='<h4>'+(plusieurs?'VII':'VI')+'. Obligations</h4>';
+  h+= R.gelLoyer
+    ? '<p>Révision du loyer : le logement étant classé '+esc(R.dpe)+' au DPE, son loyer ne peut faire l\'objet d\'aucune révision ni majoration tant que sa performance énergétique n\'est pas améliorée.</p>'
+    : '<p>Révision du loyer : le loyer est révisé chaque année à la date anniversaire du contrat, selon la variation de l\'indice de référence des loyers (IRL) publié par l\'INSEE, l\'indice de référence étant celui du dernier trimestre connu à la date de signature.</p>';
+  if(R.zt){
+    h+='<p>Le logement est situé en zone tendue : le loyer respecte les règles d\'encadrement ou de plafonnement applicables à la commune.';
+    h+= val('refMaj')?' Loyer de référence majoré : '+eur(val('refMaj'))+' par mois.':'';
+    h+= val('dernier')?' Loyer du précédent locataire : '+eur(val('dernier'))+' par mois.':' Montant du dernier loyer appliqué au précédent locataire (s\'il est parti depuis moins de 18 mois) : <span class="blank">à compléter</span>.';
+    h+='</p>';
+  }
+  h+=sec('Dépôt de garantie');
+  h+='<p>Le locataire verse un dépôt de garantie de <strong>'+eur(depAff)+'</strong> (au maximum '+(R.meuble?'deux mois':'un mois')+' de loyer hors charges). Il est restitué dans un délai d\'un mois après la remise des clés si l\'état des lieux de sortie est conforme à celui d\'entrée, de deux mois dans le cas contraire, déduction faite des sommes justifiées restant dues.</p>';
+  if(R.plusieurs)h+=sec('Solidarité')+'<p>Les locataires sont tenus solidairement et indivisiblement au paiement du loyer, des charges et de toutes les obligations du présent bail. En cas de départ de l\'un d\'eux, sa solidarité cesse lorsqu\'un nouveau locataire le remplace, et au plus tard six mois après la fin de son préavis.</p>';
+  h+=sec('Obligations');
   h+='<p><strong>Le bailleur</strong> remet un logement décent, en bon état d\'usage et de réparation, assure au locataire la jouissance paisible du logement et effectue les réparations autres que locatives.</p>';
   h+='<p><strong>Le locataire</strong> paie le loyer et les charges aux termes convenus, use paisiblement du logement, l\'entretient et prend en charge les réparations locatives, souscrit une assurance contre les risques locatifs et en justifie chaque année, et ne transforme pas les lieux sans l\'accord écrit du bailleur.</p>';
-  h+='<h4>'+(plusieurs?'VIII':'VII')+'. Congé</h4>';
-  h+='<p>Le locataire peut donner congé à tout moment, avec un préavis de '+preavisL+'. Le bailleur peut donner congé pour le terme du bail, avec un préavis de '+preavisB+', pour vendre le logement, le reprendre pour y habiter ou pour un motif légitime et sérieux.</p>';
-  h+='<p>Le congé est notifié par lettre recommandée avec accusé de réception, par acte de commissaire de justice ou remis en main propre contre récépissé.</p>';
-  h+='<h4>'+(plusieurs?'IX':'VIII')+'. Clause résolutoire</h4>';
-  h+='<p>Le bail sera résilié de plein droit en cas de défaut de paiement du loyer, des charges ou du dépôt de garantie, ou de défaut d\'assurance du locataire, après un commandement de payer ou de justifier de l\'assurance resté sans effet dans les délais prévus par la loi.</p>';
-  h+='<h4>'+(plusieurs?'X':'IX')+'. Annexes remises au locataire</h4>';
-  h+='<p>— La notice d\'information sur les droits et obligations des locataires et des bailleurs.<br>— L\'état des lieux d\'entrée'+(meuble?' et l\'inventaire détaillé du mobilier':'')+'.<br>— Le dossier de diagnostic technique : DPE, état des risques, et selon le logement constat de risque d\'exposition au plomb, diagnostics électricité et gaz, information amiante.<br>— Le cas échéant, les extraits du règlement de copropriété'+(val('gNom')?' et l\'acte de cautionnement':'')+'.</p>';
+  h+=sec('Congé');
+  h+= R.type==='etudiant'
+    ? '<p>Le locataire peut donner congé à tout moment, avec un préavis d\'un (1) mois.</p>'
+    : '<p>Le locataire peut donner congé à tout moment, avec un préavis de '+R.preavisL+(R.preavisL.indexOf('trois')===0?', réduit à un mois dans les cas prévus par la loi (mutation, perte d\'emploi, premier emploi, nouvel emploi après une perte d\'emploi, raisons de santé, bénéficiaire du RSA ou de l\'AAH, attribution d\'un logement social), sur justificatif joint au congé':'')+'. Le bailleur peut donner congé pour le terme du bail, avec un préavis de '+R.preavisB+', pour vendre le logement, le reprendre pour y habiter ou pour un motif légitime et sérieux.</p>';
+  h+='<p>Le congé est notifié par lettre recommandée avec accusé de réception, par acte de commissaire de justice ou remis en main propre contre récépissé. Le préavis court à compter de sa réception.</p>';
+  h+=sec('Clause résolutoire');
+  h+='<p>Le présent bail sera résilié de plein droit à défaut de paiement du loyer, des charges ou du dépôt de garantie aux termes convenus, six semaines après un commandement de payer demeuré infructueux.</p>';
+  if($('clauseAssur').checked)h+='<p>Il sera également résilié de plein droit à défaut d\'assurance du locataire contre les risques locatifs, un mois après un commandement de justifier de cette assurance demeuré infructueux.</p>';
+  if($('rp').checked)h+='<p>Il pourra aussi être résilié en cas de manquement du locataire à l\'obligation d\'occuper le logement à titre de résidence principale, à l\'expiration de la mise en demeure prévue par la loi.</p>';
+  h+='<p>Seul le juge peut constater la résiliation et ordonner l\'expulsion. Le locataire qui règle sa dette dans les délais accordés par le juge conserve son bail.</p>';
+  h+=sec('Annexes remises au locataire');
+  h+='<p>— La notice d\'information sur les droits et obligations des locataires et des bailleurs.<br>— L\'état des lieux d\'entrée'+(R.meuble?' et l\'inventaire détaillé du mobilier':'')+'.<br>— Le dossier de diagnostic technique : DPE, état des risques, et selon le logement constat de risque d\'exposition au plomb, diagnostics électricité et gaz, information amiante.<br>— Le cas échéant, les extraits du règlement de copropriété'+(val('gNom')?' et l\'acte de cautionnement':'')+'.</p>';
   h+='<p style="margin-top:16px">Fait à '+blank(val('lieu'),'ville')+', le <span class="blank">date de signature</span>, en autant d\'exemplaires originaux que de parties.</p>';
-  h+='<div class="sign"><div>Le bailleur<br>'+esc(val('bNom'))+'</div><div>'+(plusieurs?'Les locataires':'Le locataire')+'<br>'+esc(val('lNom'))+'</div></div>';
+  h+='<div class="sign"><div>Le bailleur<br>'+esc(val('bNom'))+'</div><div>'+(R.plusieurs?'Les locataires':'Le locataire')+'<br>'+esc(val('lNom'))+'</div></div>';
   $('docBail').innerHTML=h;
+  $('copyBail').disabled=R.interdit; $('printBail').disabled=R.interdit;
 }
+window.__bailRules=bailRules;
 
 /* ===== QUITTANCE ===== */
+function quitRules(){
+  var du=(Number(val('qLoyer'))||0)+(Number(val('qCh'))||0);
+  var recuStr=val('qRecu'), recu=recuStr===''?du:(Number(recuStr)||0);
+  return {du:du,recu:recu,partiel:recu+0.001<du};
+}
 function quittance(){
+  var Q=quitRules();
   var m=val('qMois'),lbl='<span class="blank">mois</span>',debut='',fin='';
   if(m){var p=m.split('-'),y=+p[0],mo=+p[1]-1;var a=new Date(y,mo,1,12),b=new Date(y,mo+1,0,12);
     lbl=a.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});debut=a.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});fin=b.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}
-  var t=(Number(val('qLoyer'))||0)+(Number(val('qCh'))||0);
-  var h='<h3>Quittance de loyer</h3><p class="sub">'+esc(lbl)+'</p>';
-  h+='<p>Je soussigné(e) '+blank(val('qB'),'bailleur')+', propriétaire du logement situé '+blank(val('qAdr'),'adresse')+', déclare avoir reçu de '+blank(val('qL'),'locataire')+' la somme de <strong>'+eur(t)+'</strong> au titre du paiement du loyer et des charges pour la période du '+(debut||'<span class="blank">début</span>')+' au '+(fin||'<span class="blank">fin</span>')+'.</p>';
-  h+='<h4>Détail du paiement</h4>';
-  h+='<p>Loyer hors charges : '+eur(val('qLoyer'))+'<br>Provision ou forfait de charges : '+eur(val('qCh'))+'<br><strong>Total réglé : '+eur(t)+'</strong><br>Date du paiement : '+dfr(val('qPaye'))+'</p>';
-  h+='<p>Cette quittance annule tous les reçus qui auraient pu être établis précédemment pour la même période. Elle est délivrée gratuitement, sous réserve de tous droits et sans préjudice des sommes qui resteraient dues.</p>';
+  var periode='la période du '+(debut||'<span class="blank">début</span>')+' au '+(fin||'<span class="blank">fin</span>');
+  var h;
+  if(Q.partiel){
+    h='<h3>Reçu de paiement partiel</h3><p class="sub">'+esc(lbl)+'</p>';
+    h+='<p>Je soussigné(e) '+blank(val('qB'),'bailleur')+', propriétaire du logement situé '+blank(val('qAdr'),'adresse')+', déclare avoir reçu de '+blank(val('qL'),'locataire')+' la somme de <strong>'+eur(Q.recu)+'</strong>, en paiement partiel du loyer et des charges dus pour '+periode+'.</p>';
+    h+='<h4>Détail</h4><p>Somme due : '+eur(Q.du)+'<br>Somme reçue : '+eur(Q.recu)+'<br><strong>Reste dû : '+eur(Math.round((Q.du-Q.recu)*100)/100)+'</strong><br>Date du paiement : '+dfr(val('qPaye'))+'</p>';
+    h+='<p>Ce reçu ne vaut pas quittance. La quittance du mois sera délivrée une fois la totalité des sommes payée.</p>';
+  }else{
+    h='<h3>Quittance de loyer</h3><p class="sub">'+esc(lbl)+'</p>';
+    h+='<p>Je soussigné(e) '+blank(val('qB'),'bailleur')+', propriétaire du logement situé '+blank(val('qAdr'),'adresse')+', déclare avoir reçu de '+blank(val('qL'),'locataire')+' la somme de <strong>'+eur(Q.du)+'</strong> au titre du paiement du loyer et des charges pour '+periode+'.</p>';
+    h+='<h4>Détail du paiement</h4>';
+    h+='<p>Loyer hors charges : '+eur(val('qLoyer'))+'<br>Provision ou forfait de charges : '+eur(val('qCh'))+'<br><strong>Total réglé : '+eur(Q.du)+'</strong><br>Date du paiement : '+dfr(val('qPaye'))+'</p>';
+    h+='<p>Cette quittance annule tous les reçus qui auraient pu être établis précédemment pour la même période. Elle est délivrée gratuitement.</p>';
+  }
   h+='<p style="margin-top:16px">Fait à '+blank(val('qLieu'),'ville')+', le '+dfr(iso(new Date()))+'.</p>';
   h+='<div class="sign"><div>Le bailleur<br>'+esc(val('qB'))+'</div><div></div></div>';
   $('docQuit').innerHTML=h;
 }
+window.__quitRules=quitRules;
+
+/* ===== ETAT DES LIEUX ===== */
+var ETATS=['Neuf','Bon état','État d\'usage','Mauvais état'];
+var ELEMENTS=['Sols','Murs','Plafond','Portes et fenêtres','Électricité et éclairage','Équipements'];
+var roomSeq=0;
+function addRoom(name){
+  var id='r'+(++roomSeq), d=document.createElement('div'); d.className='room'; d.dataset.room=id;
+  var g=ELEMENTS.map(function(el,i){return '<label>'+esc(el)+'<select id="'+id+'s'+i+'">'+ETATS.map(function(e,j){return '<option'+(j===1?' selected':'')+'>'+e+'</option>';}).join('')+'</select></label>';}).join('');
+  d.innerHTML='<div class="room-head"><label>Pièce<input id="'+id+'n" value="'+esc(name||'')+'"></label><button type="button" class="room-del" aria-label="Retirer cette pièce">Retirer</button></div>'
+    +'<div class="room-grid">'+g+'</div><label>Observations (taches, trous, rayures, ce qui manque…)<textarea id="'+id+'o"></textarea></label>';
+  d.querySelector('.room-del').onclick=function(){d.remove();edl();};
+  $('rooms').appendChild(d);
+}
+function edl(){
+  var sortie=document.querySelector('input[name=eType]:checked').value==='sortie';
+  $('eSortieFields').hidden=!sortie;
+  var h='<h3>État des lieux '+(sortie?'de sortie':'d\'entrée')+'</h3><p class="sub">Logement loué à usage d\'habitation · décret n° 2016-382 du 30 mars 2016</p>';
+  h+='<h4>Informations</h4><p>Date : '+dfr(val('eDate'))+'<br>Logement : '+blank(val('eAdr'),'adresse')+'<br>Bailleur ou mandataire : '+blank(val('eB'),'nom')+'<br>Locataire(s) : '+blank(val('eL'),'nom')+'</p>';
+  if(sortie)h+='<p>Nouvelle adresse du locataire : '+blank(val('eNewAdr'),'à compléter')+'<br>Date de l\'état des lieux d\'entrée : '+dfr(val('eDateEntree'))+'</p>';
+  h+='<h4>Relevés des compteurs</h4><table><tr><th>Électricité</th><td>'+(val('cElec')?esc(val('cElec'))+' kWh':'—')+'</td><th>Gaz</th><td>'+(val('cGaz')?esc(val('cGaz'))+' m³':'—')+'</td></tr><tr><th>Eau froide</th><td>'+(val('cEauF')?esc(val('cEauF'))+' m³':'—')+'</td><th>Eau chaude</th><td>'+(val('cEauC')?esc(val('cEauC'))+' m³':'—')+'</td></tr></table>';
+  h+='<p>Chauffage et eau chaude : '+blank(val('chauffage'),'à décrire')+'</p>';
+  h+='<h4>Clés remises</h4><p>'+blank(val('cles'),'nombre et usage des clés')+'</p>';
+  h+='<h4>État des pièces</h4>';
+  var rooms=[].slice.call(document.querySelectorAll('#rooms .room'));
+  if(!rooms.length)h+='<p><span class="blank">ajoute au moins une pièce</span></p>';
+  rooms.forEach(function(r){var id=r.dataset.room;
+    h+='<p><strong>'+blank(($(id+'n').value||'').trim(),'nom de la pièce')+'</strong></p><table>'+ELEMENTS.map(function(el,i){return '<tr><th>'+esc(el)+'</th><td>'+esc($(id+'s'+i).value)+'</td></tr>';}).join('')+'</table>';
+    var o=($(id+'o').value||'').trim(); if(o)h+='<p>Observations : '+esc(o)+'</p>';});
+  h+='<h4>Bon à savoir</h4>';
+  h+= sortie
+    ? '<p>Le dépôt de garantie est restitué dans un délai d\'un mois si cet état des lieux est conforme à celui d\'entrée, de deux mois dans le cas contraire. L\'usure normale liée au temps (vétusté) ne peut pas être facturée au locataire.</p>'
+    : '<p>Le locataire peut demander à compléter cet état des lieux dans les 10 jours qui suivent sa signature, et pour le chauffage pendant le premier mois de la période de chauffe.</p>';
+  h+='<p>Établi contradictoirement, en autant d\'exemplaires que de parties, chacune en conservant un.</p>';
+  h+='<div class="sign"><div>Le bailleur ou son mandataire<br>'+esc(val('eB'))+'</div><div>'+(/(\bet\b|,|&)/i.test(val('eL'))?'Les locataires':'Le locataire')+'<br>'+esc(val('eL'))+'</div></div>';
+  $('docEdl').innerHTML=h;
+}
+['Entrée','Séjour','Cuisine','Chambre','Salle de bain','WC'].forEach(addRoom);
+$('addRoom').onclick=function(){addRoom('');edl();var r=$('rooms').lastElementChild;r.querySelector('input').focus();};
+
+/* ===== LETTRE DE CONGE ===== */
+var MOTIFS={mutation:'mutation professionnelle',perte:'perte d\'emploi',premier:'obtention d\'un premier emploi',nouvel:'obtention d\'un nouvel emploi consécutif à une perte d\'emploi',sante:'état de santé justifiant un changement de domicile',rsa:'bénéficiaire du revenu de solidarité active (RSA) ou de l\'allocation aux adultes handicapés (AAH)',social:'attribution d\'un logement social'};
+function addMonths(isoDate,n){var d=new Date(isoDate+'T12:00:00');if(isNaN(d))return null;var day=d.getDate();var t=new Date(d.getFullYear(),d.getMonth()+n,1,12);var last=new Date(t.getFullYear(),t.getMonth()+1,0).getDate();t.setDate(Math.min(day,last));return t;}
+function congeRules(){
+  var meuble=document.querySelector('input[name=kType]:checked').value==='meuble';
+  var zt=$('kZt').checked, motif=val('kMotif');
+  var court=meuble||zt||!!motif;
+  var mois=court?1:3;
+  var fin=val('kRecep')?addMonths(val('kRecep'),mois):null;
+  return {meuble:meuble,zt:zt,motif:motif,mois:mois,fin:fin,justif:!meuble&&!zt&&!!motif};
+}
+function conge(){
+  var K=congeRules();
+  $('kMotif').disabled=K.meuble;
+  if(K.meuble&&$('kMotif').value){$('kMotif').value='';K=congeRules();}
+  var finTxt=K.fin?K.fin.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'<span class="blank">date de fin</span>';
+  var pourquoi=K.meuble?'logement meublé':K.zt?'logement situé en zone tendue':K.motif?'motif : '+MOTIFS[K.motif]:'logement vide, sans motif particulier';
+  $('kResume').innerHTML='<strong>Préavis : '+K.mois+' mois</strong> ('+esc(pourquoi)+'). Si le propriétaire reçoit ta lettre le '+dfr(val('kRecep'))+', ton préavis se termine le <strong>'+finTxt+'</strong>. Tu paies le loyer jusqu\'à cette date, sauf si un nouveau locataire entre avant, avec l\'accord du propriétaire.';
+  var ka=$('kAlert');
+  if(K.justif){ka.hidden=false;ka.textContent='Joins obligatoirement un justificatif de ce motif à ta lettre (attestation, contrat, notification…). Sans justificatif envoyé avec le congé, le préavis reste de trois mois.';}else ka.hidden=true;
+  var envoi={lrar:'Lettre recommandée avec accusé de réception',main:'Remise en main propre contre émargement',cj:'Signifiée par commissaire de justice'}[val('kEnvoi')];
+  var h='<p>'+blank(val('kL'),'ton nom')+'<br>'+blank(val('kAdr'),'adresse du logement')+'</p>';
+  h+='<p style="text-align:right">'+blank(val('kB'),'nom du propriétaire')+'<br>'+blank(val('kBAdr'),'adresse du propriétaire')+'</p>';
+  h+='<p>'+esc(envoi)+'</p>';
+  h+='<p><strong>Objet : congé du logement situé '+blank(val('kAdr'),'adresse')+'</strong></p>';
+  h+='<p>Madame, Monsieur,</p>';
+  h+='<p>Je vous informe par la présente de ma décision de quitter le logement que je loue au '+blank(val('kAdr'),'adresse')+', et de mettre fin à mon bail.</p>';
+  if(K.meuble)h+='<p>S\'agissant d\'un logement loué meublé, mon préavis est d\'un mois, conformément à l\'article 25-8 de la loi du 6 juillet 1989.</p>';
+  else if(K.zt)h+='<p>Le logement étant situé en zone tendue, mon préavis est réduit à un mois, conformément à l\'article 15 de la loi du 6 juillet 1989.</p>';
+  else if(K.motif)h+='<p>En raison de ma situation ('+esc(MOTIFS[K.motif])+'), je bénéficie d\'un préavis réduit à un mois, conformément à l\'article 15 de la loi du 6 juillet 1989. Vous trouverez le justificatif correspondant joint à ce courrier.</p>';
+  else h+='<p>Conformément à l\'article 15 de la loi du 6 juillet 1989, mon préavis est de trois mois.</p>';
+  h+='<p>Ce préavis court à compter de la réception de cette lettre. Il prendra donc fin le '+finTxt+'.</p>';
+  h+='<p>Je vous propose de convenir ensemble d\'une date pour l\'état des lieux de sortie et la remise des clés. Je vous remercie de me restituer le dépôt de garantie dans les délais légaux, à l\'adresse que je vous communiquerai.</p>';
+  h+='<p>Je vous prie d\'agréer, Madame, Monsieur, l\'expression de mes salutations distinguées.</p>';
+  h+='<p style="margin-top:16px">Fait à <span class="blank">ville</span>, le <span class="blank">date</span></p><p>Signature :<br><br>'+esc(val('kL'))+'</p>';
+  if(K.justif)h+='<p>Pièce jointe : justificatif ('+esc(MOTIFS[K.motif])+').</p>';
+  $('docConge').innerHTML=h;
+}
+window.__congeRules=congeRules;
+
+/* ===== JE POSE MA QUESTION ===== */
+var Q=[
+ {t:'🏠 Logement',items:[
+  {q:'Mon propriétaire ne me rend pas mon dépôt de garantie',steps:['Le délai légal est d\'un mois après la remise des clés si l\'état des lieux de sortie est conforme à celui d\'entrée, deux mois sinon.','Passé ce délai, le propriétaire doit une pénalité de 10 % du loyer mensuel hors charges pour chaque mois de retard commencé.','Envoie-lui une lettre recommandée qui rappelle ces règles et fixe un délai.','Sans réponse, saisis gratuitement la commission départementale de conciliation, puis le juge si besoin.'],help:'ADIL de ton département, commission départementale de conciliation (gratuite).'},
+  {q:'Je veux quitter mon logement',steps:['Calcule ton préavis : 3 mois pour un logement vide, 1 mois en meublé, en zone tendue ou avec un motif reconnu (mutation, perte d\'emploi, santé…).','Envoie ta lettre en recommandé avec accusé de réception, ou remets-la en main propre contre signature.','Prépare l\'état des lieux de sortie avec le même soin que celui d\'entrée.'],tool:'#conge',toolLabel:'Faire ma lettre de congé',help:'ADIL de ton département.'},
+  {q:'Mon logement est humide, insalubre ou en mauvais état',steps:['Prends des photos datées et note les problèmes (moisissures, chauffage en panne, fuites…).','Écris au propriétaire en recommandé : il doit fournir un logement décent et faire les réparations qui ne sont pas locatives.','Sans réaction, contacte le service hygiène de ta mairie ou la CAF (signalement de non-décence) et la commission de conciliation.','Ne cesse pas de payer ton loyer de toi-même : seul un juge peut l\'autoriser.'],help:'ADIL, mairie (service hygiène), CAF.'},
+  {q:'Je n\'arrive plus à payer mon loyer',steps:['Préviens ton propriétaire tout de suite et propose un échéancier par écrit.','Vérifie tes droits aux aides au logement (APL) auprès de la CAF ou de la MSA.','Demande une aide au Fonds de solidarité pour le logement (FSL) de ton département, via le CCAS de ta mairie ou une assistante sociale.','Si tu reçois un commandement de payer, réagis vite : tu as six semaines pour régulariser ou trouver une solution.'],help:'CCAS de ta mairie, CAF, ADIL.'}]},
+ {t:'👨‍👩‍👧 Famille',items:[
+  {q:'Je veux me marier',steps:['Tout se passe à la mairie : dossier, publication des bans, cérémonie.','Le notaire n\'intervient que si vous voulez un contrat de mariage.'],tool:'#guides',toolLabel:'Lire le guide mariage',help:'Ta mairie.'},
+  {q:'Je veux divorcer',steps:['Même à l\'amiable, chaque époux doit avoir son propre avocat.','Si tes revenus sont modestes, l\'aide juridictionnelle peut payer tout ou partie de l\'avocat : demande-la avant de commencer.'],tool:'#guides',toolLabel:'Lire le guide divorce',help:'Point-justice, permanences d\'avocats gratuites.'},
+  {q:'Un proche est décédé',steps:['Fais établir l\'acte de décès et préviens banque, caisses de retraite, employeur et assurances.','Contacte un notaire s\'il y a un bien immobilier, un testament ou une donation.','Ne paie pas les dettes du défunt avant d\'avoir décidé si tu acceptes la succession.'],tool:'#guides',toolLabel:'Lire le guide succession',help:'Notaire, Point-justice.'},
+  {q:'La pension alimentaire n\'est pas payée',steps:['L\'agence de recouvrement des impayés de pensions alimentaires (ARIPA), gérée par la CAF et la MSA, peut récupérer les sommes à ta place.','Elle peut aussi verser une allocation de soutien familial en attendant, sous conditions.','La demande se fait en ligne sur le site pension-alimentaire.caf.fr ou auprès de ta CAF.'],help:'CAF ou MSA (ARIPA).'}]},
+ {t:'💶 Argent et dettes',items:[
+  {q:'J\'ai trop de dettes, je n\'y arrive plus',steps:['Tu peux déposer gratuitement un dossier de surendettement auprès de la Banque de France.','Ne paie jamais un intermédiaire pour ce dossier : la démarche est gratuite.','Un Point conseil budget peut t\'aider à faire le point et à remplir le dossier, gratuitement.'],help:'Banque de France, Points conseil budget, CCAS.'},
+  {q:'J\'ai reçu un courrier d\'un commissaire de justice (huissier)',steps:['Ne l\'ignore pas : les délais pour réagir sont souvent courts.','Vérifie que le commissaire de justice existe vraiment dans l\'annuaire officiel de la Chambre nationale des commissaires de justice : de faux huissiers envoient des courriers et des SMS pour escroquer.','Ne paie jamais par un lien reçu par SMS ou par carte cadeau.','Fais-toi aider pour comprendre le document.'],help:'Point-justice, ADIL si cela concerne le logement.'}]},
+ {t:'💼 Travail',items:[
+  {q:'J\'ai un problème avec mon employeur ou je suis licencié',steps:['Garde tous les documents : contrat, fiches de paie, lettres, messages.','Tu peux te faire assister gratuitement par un conseiller du salarié lors d\'un entretien préalable, dans une entreprise sans représentant du personnel.','Pour contester un licenciement devant le conseil de prud\'hommes, le délai est en général de 12 mois après sa notification.','L\'inspection du travail et les syndicats renseignent gratuitement.'],help:'Inspection du travail, syndicats, Point-justice.'}]},
+ {t:'🚀 Entreprise',items:[
+  {q:'Je veux créer mon activité avec peu de moyens',steps:['Commence par une micro-entreprise pour tester ton idée simplement.','La déclaration est gratuite sur formalites.entreprises.gouv.fr.'],tool:'#guides',toolLabel:'Lire le guide création d\'entreprise',help:'CCI, Chambre des métiers, France Travail.'},
+  {q:'J\'ai besoin d\'argent pour démarrer',steps:['L\'Adie propose des microcrédits aux personnes qui n\'ont pas accès au prêt bancaire classique.','Les réseaux Initiative France et France Active accordent des prêts d\'honneur sans intérêts, qui rassurent ensuite la banque.','Prépare un business plan simple : ce que tu vends, à qui, combien il te faut et quand tu rembourses.'],help:'Adie, Initiative France, France Active.'}]},
+ {t:'📋 Démarches',items:[
+  {q:'Je n\'y arrive pas avec les démarches sur internet',steps:['Les espaces France Services t\'accompagnent gratuitement pour tes démarches (CAF, impôts, retraite, santé, France Travail…).','Il y en a un près de chez toi, souvent en mairie ou à La Poste.'],help:'France Services.'},
+  {q:'Je ne sais pas à quelles aides j\'ai droit',steps:['Le simulateur officiel mesdroitssociaux.gouv.fr calcule tes droits en quelques minutes.','Ton CCAS ou une assistante sociale peut t\'aider à faire les demandes.'],help:'CCAS, France Services.'}]}
+];
+var qTheme=0,qItem=-1;
+function qDraw(){
+  $('qThemes').innerHTML=Q.map(function(t,i){return '<button type="button" role="tab" aria-selected="'+(i===qTheme)+'" data-i="'+i+'">'+esc(t.t)+'</button>';}).join('');
+  $('qList').innerHTML=Q[qTheme].items.map(function(it,i){return '<button type="button" aria-pressed="'+(i===qItem)+'" data-i="'+i+'">'+esc(it.q)+'</button>';}).join('');
+  [].forEach.call($('qThemes').children,function(b){b.onclick=function(){qTheme=+b.dataset.i;qItem=-1;qDraw();};});
+  [].forEach.call($('qList').children,function(b){b.onclick=function(){qItem=+b.dataset.i;qDraw();$('qAnswer').scrollIntoView({block:'nearest',behavior:'smooth'});};});
+  var A=$('qAnswer');
+  if(qItem<0){A.hidden=true;return;}
+  var it=Q[qTheme].items[qItem];
+  A.hidden=false;
+  A.innerHTML='<h3>'+esc(it.q)+'</h3><ol>'+it.steps.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ol><p class="who">Qui t\'aide gratuitement</p><p>'+esc(it.help)+'</p>'+(it.tool?'<p><a class="btn" href="'+it.tool+'">'+esc(it.toolLabel)+'</a></p>':'');
+}
+qDraw();
+$('qCopy').onclick=function(){var t=($('qText').value||'').trim();if(!t){toast('Écris d\'abord ta question');$('qText').focus();return;}
+  var full='Question pour Papiers Sans Galère\nDépartement : '+(($('qDep').value||'').trim()||'non précisé')+'\n\n'+t;
+  var fb=function(){$('qText').select();toast('Texte sélectionné : copie-le');};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(full).then(function(){toast('Question copiée');},fb);}else fb();};
 
 $('fBail').addEventListener('input',bail);$('fBail').addEventListener('change',bail);
 $('fBail').addEventListener('submit',function(e){e.preventDefault();});
 $('fQuit').addEventListener('input',quittance);$('fQuit').addEventListener('submit',function(e){e.preventDefault();});
-bail();quittance();
+$('fEdl').addEventListener('input',edl);$('fEdl').addEventListener('change',edl);$('fEdl').addEventListener('submit',function(e){e.preventDefault();});
+$('fConge').addEventListener('input',conge);$('fConge').addEventListener('change',conge);$('fConge').addEventListener('submit',function(e){e.preventDefault();});
+$('eDate').value=iso(today);$('eDateEntree').value='';
+$('kRecep').value=iso(new Date(today.getFullYear(),today.getMonth(),today.getDate()+3,12));
+bail();quittance();edl();conge();
 })();
 </script>
 
