@@ -30,6 +30,13 @@ section.block{padding-block:86px}.filterbar{display:flex;gap:9px;flex-wrap:wrap;
 @media(max-width:420px){.navin{gap:8px}.brand{min-width:0}.hamburger{flex:none;padding:8px 10px}.services,.tools,.flow{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.brandicon{width:41px;height:41px}.brandword{font-size:18px}.brandword small{letter-spacing:1px;font-size:8px}.heroChecks{gap:7px}.heroArt{min-height:250px}.heroCopy .display{font-size:clamp(2.9rem,10.5vw,4.3rem)}.heroButtons .btn{width:100%}.sticker{top:5px;right:0}.sticker2{bottom:0}.free .tool{min-height:130px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
+.newsitem{background:white;border:var(--stroke);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;flex-direction:column;gap:8px}
+.newsitem .k{font:900 .72rem/1.2 'Barlow',sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:#c04115}
+.newsitem h3{font:800 1.25rem/1.15 'Barlow Condensed',Arial,sans-serif;margin:0;text-transform:uppercase}
+.newsitem p{margin:0;color:#49516a;font-size:.92rem}
+.newsitem details summary{cursor:pointer;font-weight:900;font-size:.85rem;color:#bd3a15}
+.newsitem details p{margin-top:8px}
+.newsitem .src{font-size:.8rem}
 /* Checklist fiscale gratuite : n'enregistre aucune donnée */
 .taxChecklist{background:var(--paper);border:2px solid var(--line);border-radius:20px;box-shadow:6px 7px 0 var(--line);margin:27px auto 0;padding:25px;max-width:1160px}
 .taxChecklist h3{font:800 1.6rem 'Barlow Condensed',sans-serif;margin:0 0 6px;text-transform:uppercase}
@@ -50,7 +57,7 @@ section.block{padding-block:86px}.filterbar{display:flex;gap:9px;flex-wrap:wrap;
 <header class="navbar"><div class="wrap navin">
 <a class="brand" href="#accueil" aria-label="Papiers Sans Galère, accueil"><span class="brandicon" aria-hidden="true"><svg viewBox="0 0 40 40"><path fill="#fff" stroke="#10172d" stroke-width="2.6" d="M9 4h17l7 7v25H9z"/><path fill="none" stroke="#10172d" stroke-width="2.6" d="M26 4v8h7M14 19h14M14 25h10"/><path stroke="#ff642b" stroke-width="4" stroke-linecap="round" d="M19 33l13-16"/></svg></span><span class="brandword">PAPIERS SANS<br>GALÈRE<small>LES DÉMARCHES EN MODE FACILE</small></span></a>
 <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰ Menu</button>
-<nav class="links" id="menu" aria-label="Navigation principale"><a href="#demarches">Les démarches</a><a href="#impots">Impôts</a><a href="#justice">Justice</a><a href="outils.html">Outils gratuits</a><a href="outils.html#question">Ma question</a><a href="#tarifs">Tarifs</a><a href="#comment">Comment ça marche</a><a class="btn small" href="#demande">Demander de l'aide ↗</a></nav>
+<nav class="links" id="menu" aria-label="Navigation principale"><a href="#demarches">Les démarches</a><a href="#nouveautes">Nouveautés</a><a href="#impots">Impôts</a><a href="#justice">Justice</a><a href="outils.html">Outils gratuits</a><a href="outils.html#question">Ma question</a><a href="#tarifs">Tarifs</a><a href="#comment">Comment ça marche</a><a class="btn small" href="#demande">Demander de l'aide ↗</a></nav>
 </div></header>
 <main id="contenu">
 <section class="hero" id="accueil"><div class="wrap heroGrid"><div class="heroCopy"><span class="pill">✦ Des solutions simples, sans prise de tête</span><h1 class="display">LA PAPERASSE ?<br><span class="yellow">ON LA MET K.O. !</span></h1><p class="heroLead">Impôts, CAF, logement, retraite, travail… Comprendre tes démarches gratuitement. Et si tu bloques, un accompagnement humain à prix clair — seulement si tu le souhaites.</p><div class="heroButtons"><a class="btn" href="#demarches">Je cherche une démarche <span aria-hidden="true">↗</span></a><a class="btn white" href="#tarifs">Voir les petits prix</a></div><div class="heroChecks"><span>Infos gratuites</span><span>Devis avant accord</span><span>Sans abonnement forcé</span></div></div>
@@ -70,6 +77,10 @@ section.block{padding-block:86px}.filterbar{display:flex;gap:9px;flex-wrap:wrap;
 <article class="service" data-group="famille quotidien"><span class="servico">⚖️</span><h3>Justice & droits</h3><p>Garde à vue, plainte, litige, convocation : tes droits et qui contacter gratuitement.</p><a href="#justice">Voir la rubrique →</a></article>
 <article class="service" data-group="famille"><span class="servico">🩺</span><h3>Assurance maladie</h3><p>Carte Vitale, attestations, remboursement : retrouver les démarches générales de l'Assurance maladie.</p><a href="https://www.ameli.fr/" target="_blank" rel="noopener noreferrer">Ameli officiel ↗</a></article>
 </div></div></section>
+<section class="block" id="nouveautes" style="padding-top:20px"><div class="wrap">
+<div class="head"><div><span class="eyebrow">📰 Mis à jour toute la journée</span><h2 class="display-sm">CE QUI CHANGE POUR TOI</h2></div><p>Les nouveautés officielles des démarches, expliquées simplement. Source : Service-Public, le site officiel de l'administration.</p></div>
+<div class="services" id="newsList"><p class="muted">Chargement des nouveautés…</p></div>
+</div></section>
 <section class="taxband" id="impots"><div class="wrap taxgrid"><div class="taxicon"><span class="pill">🧾 NOUVEAU / IMPÔTS</span><h3 style="margin-top:22px">PAS BESOIN DE<br>PANIQUER.</h3><div class="taxsteps"><div><b>1</b><span><strong>Je m'informe.</strong> Comprendre les échéances et la déclaration officielle.</span></div><div><b>2</b><span><strong>Je prépare.</strong> Rassembler les justificatifs et identifier les rubriques générales.</span></div><div><b>3</b><span><strong>Je vérifie.</strong> Le contribuable contrôle et valide lui-même auprès de l'administration.</span></div></div></div><div class="taxright"><span class="eyebrow">Le coup de pouce impôts</span><h2>LES IMPÔTS,<br>EN PLUS SIMPLE.</h2><p>Tu veux t'organiser pour ta déclaration de revenus ? On te guide vers les démarches officielles et on peut t'aider à <strong>classer tes pièces et comprendre le parcours</strong>, sans accéder à ton compte fiscal.</p><p class="muted">Calcul d'impôt personnalisé, choix fiscaux complexes, contestation juridique et représentation : orientation vers l'administration ou un professionnel habilité.</p><div class="taxLinks"><a class="btn dark" href="https://www.impots.gouv.fr/particulier" target="_blank" rel="noopener noreferrer">Site officiel des impôts ↗</a><a class="btn white" href="#demande">Voir l'accompagnement</a></div><div class="important">🔐 Jamais de mot de passe, numéro fiscal, avis d'imposition ou pièces justificatives dans ce formulaire de démonstration.</div></div></div></section>
 
 <div class="wrap" style="padding-bottom:65px">
@@ -135,5 +146,21 @@ const filters=[...document.querySelectorAll('[data-filter]')],cards=[...document
 const offer=document.getElementById('offer'),price=document.getElementById('quoteVal'),subject=document.getElementById('subject'),res=document.getElementById('demoResults');const prices={orientation:0,coup:19,simple:49,suivi:89};function update(){price.textContent=prices[offer.value].toLocaleString('fr-FR')+' €';res.hidden=true;}offer.addEventListener('change',update);subject.addEventListener('change',()=>{res.hidden=true;});update();
 document.getElementById('simForm').addEventListener('submit',e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;const cat=subject.options[subject.selectedIndex].textContent,format=offer.options[offer.selectedIndex].textContent;res.replaceChildren();const b=document.createElement('strong');b.textContent='✅ Simulation prête — aucun envoi';const p=document.createElement('p');p.textContent='Thème : '+cat+' · Formule : '+format+'. Dans la vraie version, un formulaire privé recevrait la demande, puis un humain confirmerait la prestation et son prix par devis.';p.style.margin='8px 0 0';res.append(b,p);res.hidden=false;res.scrollIntoView({block:'nearest',behavior:'smooth'});});
 })();
+</script>
+<script>
+// « Ce qui change pour toi » : nouveautés officielles résumées (robot de velocemercato.fr, source Service-Public)
+(function(){var L={IMPOTS:'🧾 Impôts',AIDES:'💛 Aides & CAF',LOGEMENT:'🏠 Logement',FAMILLE:'👨‍👩‍👧 Famille',TRAVAIL:'💼 Travail',RETRAITE:'👴 Retraite',IDENTITE:'🪪 Papiers',VEHICULE:'🚗 Véhicule',SANTE:'🩺 Santé',JUSTICE:'⚖️ Justice',CONSO:'🛒 Consommation',AUTRE:'📋 Démarches'};
+var root=document.getElementById('newsList');function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+fetch('https://velocemercato.fr/psg/news.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():[];}).then(function(rows){
+ rows=(Array.isArray(rows)?rows:[]).filter(function(a){return a&&a.titre;}).sort(function(a,b){return String(b.publishedAt).localeCompare(String(a.publishedAt));}).slice(0,6);
+ root.textContent='';
+ if(!rows.length){root.appendChild(el('p','muted','Les nouveautés officielles arrivent très bientôt.'));return;}
+ rows.forEach(function(a){var c=el('article','newsitem');var d=new Date(a.publishedAt);
+  c.appendChild(el('span','k',(L[a.championnat]||'📋 Démarches')+' · '+d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})));
+  c.appendChild(el('h3',null,a.titre));c.appendChild(el('p',null,a.resume||''));
+  var det=el('details');det.appendChild(el('summary',null,'Lire la suite'));String(a.texte||'').split(/\n\s*\n/).forEach(function(p){if(p.trim())det.appendChild(el('p',null,p.trim()));});
+  var s=(a.sources||[])[0];if(s&&/^https:\/\//.test(s.url)){var q=el('p','src');var l=el('a',null,'Lire sur Service-Public ↗');l.href=s.url;l.target='_blank';l.rel='noopener noreferrer';q.appendChild(l);det.appendChild(q);}
+  c.appendChild(det);root.appendChild(c);});
+}).catch(function(){root.textContent='';root.appendChild(el('p','muted','Nouveautés indisponibles pour le moment.'));});})();
 </script>
 </body></html>
