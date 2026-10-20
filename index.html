@@ -78,7 +78,7 @@ section.block{padding-block:86px}.filterbar{display:flex;gap:9px;flex-wrap:wrap;
 <article class="service" data-group="famille"><span class="servico">🩺</span><h3>Assurance maladie</h3><p>Carte Vitale, attestations, remboursement : retrouver les démarches générales de l'Assurance maladie.</p><a href="https://www.ameli.fr/" target="_blank" rel="noopener noreferrer">Ameli officiel ↗</a></article>
 </div></div></section>
 <section class="block" id="nouveautes" style="padding-top:20px"><div class="wrap">
-<div class="head"><div><span class="eyebrow">📰 Mis à jour toute la journée</span><h2 class="display-sm">CE QUI CHANGE POUR TOI</h2></div><p>Les nouveautés officielles des démarches, expliquées simplement. Source : Service-Public, le site officiel de l'administration.</p></div>
+<div class="head"><div><span class="eyebrow">📰 Mis à jour toute la journée</span><h2 class="display-sm">CE QUI CHANGE POUR TOI</h2></div><p>Les nouveautés des démarches et de la vie pratique, expliquées simplement, avec le lien vers l'article d'origine. Pour ton cas précis, le site officiel reste la référence.</p></div>
 <div class="services" id="newsList"><p class="muted">Chargement des nouveautés…</p></div>
 </div></section>
 <section class="taxband" id="impots"><div class="wrap taxgrid"><div class="taxicon"><span class="pill">🧾 NOUVEAU / IMPÔTS</span><h3 style="margin-top:22px">PAS BESOIN DE<br>PANIQUER.</h3><div class="taxsteps"><div><b>1</b><span><strong>Je m'informe.</strong> Comprendre les échéances et la déclaration officielle.</span></div><div><b>2</b><span><strong>Je prépare.</strong> Rassembler les justificatifs et identifier les rubriques générales.</span></div><div><b>3</b><span><strong>Je vérifie.</strong> Le contribuable contrôle et valide lui-même auprès de l'administration.</span></div></div></div><div class="taxright"><span class="eyebrow">Le coup de pouce impôts</span><h2>LES IMPÔTS,<br>EN PLUS SIMPLE.</h2><p>Tu veux t'organiser pour ta déclaration de revenus ? On te guide vers les démarches officielles et on peut t'aider à <strong>classer tes pièces et comprendre le parcours</strong>, sans accéder à ton compte fiscal.</p><p class="muted">Calcul d'impôt personnalisé, choix fiscaux complexes, contestation juridique et représentation : orientation vers l'administration ou un professionnel habilité.</p><div class="taxLinks"><a class="btn dark" href="https://www.impots.gouv.fr/particulier" target="_blank" rel="noopener noreferrer">Site officiel des impôts ↗</a><a class="btn white" href="#demande">Voir l'accompagnement</a></div><div class="important">🔐 Jamais de mot de passe, numéro fiscal, avis d'imposition ou pièces justificatives dans ce formulaire de démonstration.</div></div></div></section>
@@ -148,18 +148,18 @@ document.getElementById('simForm').addEventListener('submit',e=>{e.preventDefaul
 })();
 </script>
 <script>
-// « Ce qui change pour toi » : nouveautés officielles résumées (robot de velocemercato.fr, source Service-Public)
+// « Ce qui change pour toi » : nouveautés résumées (robot de velocemercato.fr, sources franceinfo vie pratique)
 (function(){var L={IMPOTS:'🧾 Impôts',AIDES:'💛 Aides & CAF',LOGEMENT:'🏠 Logement',FAMILLE:'👨‍👩‍👧 Famille',TRAVAIL:'💼 Travail',RETRAITE:'👴 Retraite',IDENTITE:'🪪 Papiers',VEHICULE:'🚗 Véhicule',SANTE:'🩺 Santé',JUSTICE:'⚖️ Justice',CONSO:'🛒 Consommation',AUTRE:'📋 Démarches'};
 var root=document.getElementById('newsList');function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
 fetch('https://velocemercato.fr/psg/news.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():[];}).then(function(rows){
  rows=(Array.isArray(rows)?rows:[]).filter(function(a){return a&&a.titre;}).sort(function(a,b){return String(b.publishedAt).localeCompare(String(a.publishedAt));}).slice(0,6);
  root.textContent='';
- if(!rows.length){root.appendChild(el('p','muted','Les nouveautés officielles arrivent très bientôt.'));return;}
+ if(!rows.length){root.appendChild(el('p','muted','Les nouveautés arrivent très bientôt.'));return;}
  rows.forEach(function(a){var c=el('article','newsitem');var d=new Date(a.publishedAt);
   c.appendChild(el('span','k',(L[a.championnat]||'📋 Démarches')+' · '+d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})));
   c.appendChild(el('h3',null,a.titre));c.appendChild(el('p',null,a.resume||''));
   var det=el('details');det.appendChild(el('summary',null,'Lire la suite'));String(a.texte||'').split(/\n\s*\n/).forEach(function(p){if(p.trim())det.appendChild(el('p',null,p.trim()));});
-  var s=(a.sources||[])[0];if(s&&/^https:\/\//.test(s.url)){var q=el('p','src');var l=el('a',null,'Lire sur Service-Public ↗');l.href=s.url;l.target='_blank';l.rel='noopener noreferrer';q.appendChild(l);det.appendChild(q);}
+  var s=(a.sources||[])[0];if(s&&/^https:\/\//.test(s.url)){var q=el('p','src');var l=el('a',null,'Lire l\'article complet ↗');l.href=s.url;l.target='_blank';l.rel='noopener noreferrer';q.appendChild(l);det.appendChild(q);}
   c.appendChild(det);root.appendChild(c);});
 }).catch(function(){root.textContent='';root.appendChild(el('p','muted','Nouveautés indisponibles pour le moment.'));});})();
 </script>
