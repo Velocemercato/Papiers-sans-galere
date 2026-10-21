@@ -5,7 +5,7 @@
  "start_url": "/Papiers-sans-galere/?app=1",
  "scope": "/Papiers-sans-galere/",
  "display": "standalone",
- "background_color": "#ffffff",
+ "background_color": "#000000",
  "theme_color": "#281c06",
  "lang": "fr",
  "icons": [
