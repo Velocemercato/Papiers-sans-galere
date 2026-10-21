@@ -1,0 +1,29 @@
+{
+ "id": "/Papiers-sans-galere/",
+ "name": "Papiers Sans Galère – VM",
+ "short_name": "VM Papiers",
+ "start_url": "/Papiers-sans-galere/?app=1",
+ "scope": "/Papiers-sans-galere/",
+ "display": "standalone",
+ "background_color": "#14100a",
+ "theme_color": "#281c06",
+ "lang": "fr",
+ "icons": [
+  {
+   "src": "/Papiers-sans-galere/app/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/Papiers-sans-galere/app/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/Papiers-sans-galere/app/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

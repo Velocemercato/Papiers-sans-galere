@@ -65,7 +65,7 @@ section.block{padding-block:86px}.filterbar{display:flex;gap:9px;flex-wrap:wrap;
 .vmbar .vmb-don{margin-left:auto;background:#f4cf55;color:#0b1533}
 .vmbar a.s{background:#e1243a;color:#fff}.vmbar a.s.on{background:#fff;color:#e1243a}
 @media(max-width:520px){.vmbar a{padding:7px 8px;font-size:12px}}
-</style></head>
+</style><link rel="manifest" href="/Papiers-sans-galere/manifest.webmanifest" id="ppapp-m"><meta name="theme-color" content="#281c06"><link rel="apple-touch-icon" href="/Papiers-sans-galere/app/apple-touch-icon.png"></head>
 <body><nav class="vmbar" aria-label="Les univers VM"><div class="vmbar-in"><a class="vmb-logo" href="https://velocemercato.fr/groupe.html" aria-label="Tous les sites VM">VM <small>TOUS LES SITES</small></a><a class="f" href="https://velocemercato.fr/">⚽ Foot</a><a class="s" href="https://velocemercato.fr/studio.html#tv">📺 Pastille TV</a><a class="g" href="https://velocemercato.fr/vm-gaming/">🎮 Gaming</a><a class="a" href="https://velocemercato.fr/actus/">📰 Actus</a><a class="r" href="https://velocemercato.fr/radio.html">📻 Radio</a><a class="v" href="https://velocemercato.fr/#videos">🎬 Vidéos</a><a class="vmb-don" href="https://velocemercato.fr/soutenir.html">💛 Soutenir</a></div></nav>
 <a class="skip" href="#contenu">Aller au contenu</a>
 <div class="topline">✅ OUTILS ET GUIDES GRATUITS — <span>L'ACCOMPAGNEMENT PAYANT N'EST PAS ENCORE OUVERT : AUCUN PAIEMENT EN LIGNE</span></div>
@@ -178,4 +178,9 @@ fetch('https://velocemercato.fr/psg/news.json?v='+Date.now(),{cache:'no-store'})
   c.appendChild(det);root.appendChild(c);});
 }).catch(function(){root.textContent='';root.appendChild(el('p','muted','Nouveautés indisponibles pour le moment.'));});})();
 </script>
-</body></html>
+<button type="button" id="ppInst" hidden style="position:fixed;left:14px;bottom:14px;z-index:60;background:#f4cf55;color:#1a1200;border:0;border-radius:999px;padding:10px 16px;font:800 14px system-ui;box-shadow:0 6px 18px rgba(0,0,0,.35)">📲 Installer l'appli</button>
+<script id="ppapp-js">if('serviceWorker' in navigator)navigator.serviceWorker.register('/Papiers-sans-galere/sw.js').catch(()=>{});
+(function(){var b=document.getElementById('ppInst'),ev;if(matchMedia('(display-mode: standalone)').matches)return;
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;b.hidden=false});
+if(/iphone|ipad/i.test(navigator.userAgent)){b.hidden=false;ev=null}
+b.onclick=function(){if(ev){ev.prompt();ev.userChoice.then(function(){b.hidden=true})}else alert("Sur iPhone : bouton Partager — puis « Sur l'écran d'accueil »")}})();</script></body></html>
